@@ -3,3 +3,57 @@
 h1 {
     color: @primary;
 }
+
+.outer-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    min-height: 100vh;
+
+    .box {
+        flex-basis: 100px;
+        flex-grow: 1;
+
+        &.header-box {
+            background-color: #18BC9B;
+        }
+        
+        &.content-box {
+            flex-grow: 10;
+            background-color: #3498db;
+            border: 5px solid goldenrod;
+            height: 500px;
+    
+            .content-container {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                border: 5px solid red;
+    
+                .box {
+                    flex-basis: 500px;
+                    max-width: 33%;
+                    max-height: inherit;
+
+                    &.content-box-1 {
+                        background-color: #9b59b6;
+                    }
+                    
+                    &.content-box-2 {
+                        background-color: #34495e;
+                    }
+                    
+                    &.content-box-3 {
+                        background-color: #f1c40f;
+                    }
+                }
+            }
+        }
+        
+        &.footer-box {
+            background-color: #e74c3c;
+        }
+    }
+    
+    
+}
