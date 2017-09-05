@@ -1115,14 +1115,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var preact_1 = __webpack_require__(0);
 var header_1 = __webpack_require__(4);
 var content_1 = __webpack_require__(5);
-var footer_1 = __webpack_require__(6);
+var footer_1 = __webpack_require__(7);
 var App = /** @class */function (_super) {
     __extends(App, _super);
     function App() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     App.prototype.render = function () {
-        return preact_1.h("div", { className: "outer-container" }, preact_1.h("div", { className: "box header-box" }, preact_1.h(header_1.default, null)), preact_1.h("div", { className: "box content-box" }, preact_1.h(content_1.default, null)), preact_1.h("div", { className: "box footer-box" }, preact_1.h(footer_1.default, null)));
+        return preact_1.h("div", null, preact_1.h(header_1.default, null), preact_1.h(content_1.default, null), preact_1.h(footer_1.default, null));
     };
     return App;
 }(preact_1.Component);
@@ -1159,7 +1159,7 @@ var Header = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Header.prototype.render = function () {
-        return preact_1.h("div", { id: "header" });
+        return preact_1.h("header", null, "Header");
     };
     return Header;
 }(preact_1.Component);
@@ -1190,13 +1190,14 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var preact_1 = __webpack_require__(0);
+var article_1 = __webpack_require__(6);
 var Content = /** @class */function (_super) {
     __extends(Content, _super);
     function Content() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Content.prototype.render = function () {
-        return preact_1.h("div", { id: "content", className: "content-container" }, preact_1.h("div", { className: "box content-box-1" }, "JENS"), preact_1.h("div", { className: "box content-box-2" }, "ADAM"), preact_1.h("div", { className: "box content-box-3" }, "DAVE"));
+        return preact_1.h("div", { className: "article-container" }, preact_1.h(article_1.default, null), preact_1.h(article_1.default, null), preact_1.h(article_1.default, null));
     };
     return Content;
 }(preact_1.Component);
@@ -1227,13 +1228,50 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var preact_1 = __webpack_require__(0);
+var Article = /** @class */function (_super) {
+    __extends(Article, _super);
+    function Article() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Article.prototype.render = function () {
+        return preact_1.h("article", null, preact_1.h("header", null, preact_1.h("p", { style: "text-align: center;" }, preact_1.h("picture", null, preact_1.h("source", { media: "(max-width: 960px)", srcset: "./src/images/watch_256w.jpg" }), preact_1.h("source", { media: "(min-width: 961px)", srcset: "./src/images/watch_525w.jpg" }), preact_1.h("img", { src: "./src/images/watch_525w.jpg", alt: "A nice watch" })), preact_1.h("h2", null, "Lorem ipsum"))), preact_1.h("section", null, preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porta tristique pellentesque. In rutrum pellentesque pharetra. Nulla a libero nunc. Nullam quis venenatis arcu, et elementum tellus. Aenean commodo, leo vel sollicitudin dignissim, nisl justo molestie eros, eu gravida dui dui sit amet urna. Vivamus pulvinar volutpat orci et iaculis. Fusce ut risus tincidunt, posuere nulla in, interdum magna. Duis fermentum, lectus nec feugiat vulputate, lacus ipsum convallis lacus, sed vestibulum tellus ex eget libero. Maecenas rhoncus ex sit amet consequat ultricies. Quisque maximus nulla ut imperdiet vestibulum. Aliquam fermentum felis in ligula egestas aliquam. Donec quis orci mauris."), preact_1.h("p", null, "Nunc elementum metus vel libero dignissim tincidunt. Vivamus at augue ut massa varius cursus. Nam cursus, felis sit amet semper rhoncus, diam ipsum facilisis dolor, sit amet accumsan lorem neque at ex. Fusce id mattis lectus, sed luctus quam. Pellentesque eleifend in dui ac congue. Ut scelerisque massa nec lacinia consectetur. Suspendisse felis tellus, blandit ac volutpat volutpat, viverra at lacus."), preact_1.h("p", null, "Praesent consectetur, sem vel eleifend rhoncus, turpis ex vestibulum metus, in molestie nisl risus at diam. Etiam in tortor augue. Aenean nec diam non sapien egestas congue vitae vitae urna. Mauris non justo in arcu elementum dignissim. Praesent faucibus leo nec diam lacinia rutrum. Mauris varius mollis nibh, quis tempus dui rhoncus at. Ut ut egestas sapien. Maecenas in mauris ut nisl efficitur accumsan. Morbi ut sollicitudin nulla.")));
+    };
+    return Article;
+}(preact_1.Component);
+exports.default = Article;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
 var Footer = /** @class */function (_super) {
     __extends(Footer, _super);
     function Footer() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Footer.prototype.render = function () {
-        return preact_1.h("div", { id: "footer" });
+        return preact_1.h("footer", null, "Footer");
     };
     return Footer;
 }(preact_1.Component);

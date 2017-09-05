@@ -1,48 +1,82 @@
 h1 {
   color: violet;
 }
-.outer-container {
+header {
+  min-height: 70px;
+}
+footer {
+  min-height: 70px;
+}
+header,
+footer,
+.article-container {
+  padding: 5px;
+  margin: 5px;
+}
+.article-container {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
-  min-height: 100vh;
+  justify-content: space-between;
 }
-.outer-container .box {
-  flex: 0 1 auto;
-  flex-basis: 100px;
-}
-.outer-container .box.header-box {
-  background-color: #18BC9B;
-}
-.outer-container .box.content-box {
-  flex-grow: 10;
-  background-color: #3498db;
-  border: 5px solid goldenrod;
-  height: 500px;
-}
-.outer-container .box.content-box .content-container {
-  flex: 0 1 auto;
+.article-container article {
+  min-height: 400px;
+  border: 1px solid #eee;
+  padding: 10px;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: column;
-  border: 5px solid red;
 }
-.outer-container .box.content-box .content-container .box {
-  flex-basis: 500px;
-  max-width: 33%;
-  max-height: inherit;
+.article-container article header {
+  padding: 0;
+  margin: 0;
+  min-height: 100px;
+  flex: 1 1 25%;
+  order: 1;
 }
-.outer-container .box.content-box .content-container .box.content-box-1 {
-  background-color: #9b59b6;
+.article-container article header picture {
+  min-height: 75px;
 }
-.outer-container .box.content-box .content-container .box.content-box-2 {
-  background-color: #34495e;
+.article-container article header h2 {
+  margin-top: 10px;
 }
-.outer-container .box.content-box .content-container .box.content-box-3 {
-  background-color: #f1c40f;
+.article-container article header p {
+  text-align: center;
+  margin-bottom: 0;
 }
-.outer-container .box.footer-box {
-  background-color: #e74c3c;
+.article-container article section {
+  min-height: 300px;
+  flex: 1 1 75%;
+  order: 2;
+}
+.article-container article + article {
+  margin-top: 10px;
+}
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+  .article-container {
+    min-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+  }
+  .article-container article {
+    min-height: 800px;
+    flex-basis: 32%;
+  }
+  .article-container article header {
+    min-height: 200px;
+  }
+  .article-container article header picture {
+    min-height: 150px;
+  }
+  .article-container article header picture img {
+    height: 185px;
+  }
+  .article-container article section {
+    min-height: 600px;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map*/

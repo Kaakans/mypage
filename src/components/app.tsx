@@ -5,16 +5,10 @@ import Footer from './footer';
 
 export default class App extends Component<any, any> {
     render() {
-        return <div className="outer-container">
-            <div className="box header-box">
-                <Header />
-            </div>
-            <div className="box content-box">
-                <Content />
-            </div>
-            <div className="box footer-box">
-                <Footer />
-            </div>
+        return <div>
+            <Header />
+            <Content />
+            <Footer />
         </div>;
     }
 }
