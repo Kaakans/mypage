@@ -32,7 +32,7 @@ export default class Article extends Component<any, any> {
                     Donec quis orci mauris.
                 </p>
 
-                <p>
+                {/* <p>
                     Nunc elementum metus vel libero dignissim tincidunt. 
                     Vivamus at augue ut massa varius cursus. 
                     Nam cursus, felis sit amet semper rhoncus, 
@@ -54,7 +54,7 @@ export default class Article extends Component<any, any> {
                     Mauris varius mollis nibh, quis tempus dui rhoncus at. 
                     Ut ut egestas sapien. Maecenas in mauris ut nisl efficitur accumsan. 
                     Morbi ut sollicitudin nulla.
-                </p>
+                </p> */}
             </section>
         </article>
     }

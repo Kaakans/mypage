@@ -7,6 +7,15 @@ export default class Content extends Component<any, any> {
             <Article />
             <Article />
             <Article />
+            <Article />
+            <Article />
+            <Article />
+            <Article />
+            <Article />
+            <Article />
+            <Article />
+            <Article />
+            <Article />
         </div>
     }
 }
