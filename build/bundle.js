@@ -1159,7 +1159,7 @@ var Header = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Header.prototype.render = function () {
-        return preact_1.h("header", { className: "top-header" }, preact_1.h("nav", null, preact_1.h("div", null), preact_1.h("input", { type: "checkbox", id: "menu-toggle" }), preact_1.h("label", { for: "menu-toggle", class: "label-toggle" }), preact_1.h("ul", null, preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Lorem")), preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Ipsum")), preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Serum")))));
+        return preact_1.h("header", { className: "top-header" }, preact_1.h("nav", { className: "wrapper" }, preact_1.h("div", { className: "logo" }), preact_1.h("input", { type: "checkbox", id: "menu-toggle" }), preact_1.h("label", { for: "menu-toggle", class: "label-toggle" }), preact_1.h("ul", { id: "nav-menu" }, preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Lorem")), preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Ipsum")), preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Serum")))));
     };
     return Header;
 }(preact_1.Component);
