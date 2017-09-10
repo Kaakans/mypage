@@ -1,6 +1,10 @@
 import { h, Component } from 'preact';
 
-export default class Article extends Component<any, any> {
+export class IProps {
+    data: string;
+}
+
+export default class Article extends Component<IProps, any> {
     render() {
         return <article>
             <header>
@@ -10,7 +14,7 @@ export default class Article extends Component<any, any> {
                         <source media="(min-width: 961px)" srcset="./src/images/watch_525w.jpg" />
                         <img src="./src/images/watch_525w.jpg" alt="A nice watch" />
                     </picture>
-                    <h2>Lorem ipsum</h2>
+                    <h2>Article {this.props.data}</h2>
                 </p>
             </header>
             <section>

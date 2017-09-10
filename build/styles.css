@@ -9,7 +9,7 @@ header.top-header nav {
   padding: 1em 20px;
 }
 header.top-header nav .logo {
-  background-color: violet;
+  background-color: #E523E5;
   border-radius: 50px;
   display: inline-block;
   height: 45px;
@@ -26,21 +26,22 @@ header.top-header nav ul {
   opacity: 0;
   visibility: hidden;
   margin: 0;
+  padding-left: 0;
 }
 header.top-header nav ul li {
   border-bottom: 2px solid black;
-  color: #E523E5;
+  background-color: #E523E5;
   display: block;
   font-size: 1.5em;
-  padding: 2em 0;
+  padding: 20px 0;
 }
 header.top-header nav ul li a {
-  color: violet;
+  color: black;
   text-decoration: none;
   transition: all .5s ease;
 }
 header.top-header nav ul li a:hover {
-  color: #E523E5;
+  color: #f5acf5;
 }
 header.top-header nav #menu-toggle {
   display: none;
@@ -49,9 +50,10 @@ header.top-header nav #menu-toggle:checked ~ ul {
   opacity: 1;
   height: 100vh;
   visibility: visible;
+  padding-top: 15px;
 }
 header.top-header nav .label-toggle {
-  background: linear-gradient(to bottom, violet 0%, violet 20%, transparent 20%, transparent 40%, violet 40%, violet 60%, transparent 60%, transparent 80%, violet 80%, violet 100%);
+  background: linear-gradient(to bottom, #E523E5 0%, #E523E5 20%, transparent 20%, transparent 40%, #E523E5 40%, #E523E5 60%, transparent 60%, transparent 80%, #E523E5 80%, #E523E5 100%);
   cursor: pointer;
   display: block;
   float: right;
@@ -79,9 +81,10 @@ header.top-header nav .label-toggle {
     display: inline-block;
     font-size: 1em;
     padding: 0;
+    background-color: inherit;
   }
   header.top-header nav ul li a {
-    color: violet;
+    color: #E523E5;
   }
   header.top-header nav .label-toggle {
     display: none;
@@ -92,7 +95,7 @@ header.top-header nav .label-toggle {
   src: url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 }
 h1 {
-  color: violet;
+  color: #E523E5;
 }
 body {
   margin: 0;
@@ -104,7 +107,7 @@ body div .article-container {
   flex-wrap: nowrap;
   flex-direction: column;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   padding-top: 100px;
 }
 body div .article-container article {

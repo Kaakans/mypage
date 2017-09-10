@@ -27,16 +27,17 @@ header.top-header {
             opacity: 0;
             visibility: hidden;
             margin: 0;
+            padding-left: 0; 
 
             li {
                 border-bottom: 2px solid @background;
-                color: @primary-dark;
+                background-color: @primary;
                 display: block;
                 font-size: 1.5em;
-                padding: 2em 0;
+                padding: 20px 0;
 
                 a {
-                    color: @primary;
+                    color: @background;
                     text-decoration: none;
                     transition: all .5s ease;
 
@@ -55,6 +56,7 @@ header.top-header {
             opacity: 1;
             height: 100vh;
             visibility: visible;
+            padding-top: 15px;   
         }
           
         .label-toggle {
@@ -90,6 +92,7 @@ header.top-header {
                     display: inline-block;
                     font-size: 1em;
                     padding: 0;
+                    background-color: inherit;
 
                     a{
                         color: @primary;
