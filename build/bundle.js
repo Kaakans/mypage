@@ -1115,7 +1115,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var preact_1 = __webpack_require__(0);
 var header_1 = __webpack_require__(4);
 var content_1 = __webpack_require__(5);
-var footer_1 = __webpack_require__(7);
+var footer_1 = __webpack_require__(6);
 var App = /** @class */function (_super) {
     __extends(App, _super);
     function App() {
@@ -1190,21 +1190,13 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var preact_1 = __webpack_require__(0);
-var article_1 = __webpack_require__(6);
 var Content = /** @class */function (_super) {
     __extends(Content, _super);
     function Content() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.renderGithubs = function () {
-            var articles = ["Kaakans", "Pracha", "Erik", "Johnny", "Anders"];
-            return articles.map(function (x) {
-                return preact_1.h(article_1.default, { data: x });
-            });
-        };
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     Content.prototype.render = function () {
-        return preact_1.h("div", { className: "article-container" }, preact_1.h(article_1.default, { data: "55" }), this.renderGithubs());
+        return preact_1.h("div", { className: "article-container" });
     };
     return Content;
 }(preact_1.Component);
@@ -1212,48 +1204,6 @@ exports.default = Content;
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var IProps = /** @class */function () {
-    function IProps() {}
-    return IProps;
-}();
-exports.IProps = IProps;
-var Article = /** @class */function (_super) {
-    __extends(Article, _super);
-    function Article() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Article.prototype.render = function () {
-        return preact_1.h("article", null, preact_1.h("header", null, preact_1.h("p", { style: "text-align: center;" }, preact_1.h("picture", null, preact_1.h("source", { media: "(max-width: 960px)", srcset: "./src/images/watch_256w.jpg" }), preact_1.h("source", { media: "(min-width: 961px)", srcset: "./src/images/watch_525w.jpg" }), preact_1.h("img", { src: "./src/images/watch_525w.jpg", alt: "A nice watch" })), preact_1.h("h2", null, "Article ", this.props.data))), preact_1.h("section", null, preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porta tristique pellentesque. In rutrum pellentesque pharetra. Nulla a libero nunc. Nullam quis venenatis arcu, et elementum tellus. Aenean commodo, leo vel sollicitudin dignissim, nisl justo molestie eros, eu gravida dui dui sit amet urna. Vivamus pulvinar volutpat orci et iaculis. Fusce ut risus tincidunt, posuere nulla in, interdum magna. Duis fermentum, lectus nec feugiat vulputate, lacus ipsum convallis lacus, sed vestibulum tellus ex eget libero. Maecenas rhoncus ex sit amet consequat ultricies. Quisque maximus nulla ut imperdiet vestibulum. Aliquam fermentum felis in ligula egestas aliquam. Donec quis orci mauris.")));
-    };
-    return Article;
-}(preact_1.Component);
-exports.default = Article;
-
-/***/ }),
-/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

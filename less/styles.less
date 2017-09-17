@@ -11,113 +11,19 @@ body {
     padding: 0;
     font-family: 'Oswald', Arial, Helvetica, sans-serif;
 
-    div {
-        .article-container {
-            display: flex;
-            flex-wrap: nowrap;
-            flex-direction: column;
-            align-items: center;
-        
-            padding: 20px;
-            padding-top: 100px;
+    footer {
+        height: 100vh;
+        background-color: @header-background;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-            article {
-                min-height: 400px;
-                margin: 5px;
-                padding: 10px;
-        
-                display: flex;
-                flex-wrap: nowrap;
-                flex-direction: column;
-            
-                header {
-                    padding: 0;
-                    margin: 0;
-                    min-height: 100px;
-                    border-bottom: 1px solid @grey;
-        
-                    flex: 1 1 25%;
-                    order: 1;
-        
-                    picture {
-                        min-height: 75px;
-                    }
-        
-                    h2 {
-                        margin-top: 10px;
-                    }
-        
-                    p {
-                        text-align: center; 
-                        margin-bottom: 0;
-                    }
-                }
-        
-                section {
-                    min-height: 300px;
-                    flex: 1 1 75%;
-                    order: 2;
-        
-                    p {
-                        text-align: center;
-                    }
-                }
-            }
-        }
-
-        footer {
-            height: 100vh;
-            background-color: @background;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        h1 {
+            color: @header-primary;
         }
     }
 }
 
-
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
-    body {
-        div {
-            .article-container {
-                min-width: 960px;
-                margin: 0 auto;
-        
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: row;
-                justify-content: center;
-                
-                article {
-                    max-width: 500px;
-                    flex-basis: 32%;
-                    transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0.2s ease;
-
-                    &:hover {
-                        box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
-                        transform: scale(1.05);
-                        transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0.2s ease;
-                        z-index: 2;
-                    }
-
-                    header {
-                        min-height: 200px;
-            
-                        picture {
-                            min-height: 150px;
-        
-                            img {
-                                height: 185px;
-                            }
-                        }
-                    }
-            
-                    section {
-                        min-height: 250px;
-                    }
-                }
-            }
-        }
-    }
 }

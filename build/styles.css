@@ -1,5 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700);header.top-header {
-  background-color: black;
+  background-color: #53354A;
   position: fixed;
   min-width: 100%;
   z-index: 10;
@@ -9,14 +9,14 @@ header.top-header nav {
   padding: 1em 20px;
 }
 header.top-header nav .logo {
-  background-color: #E523E5;
+  background-color: #E84545;
   border-radius: 50px;
   display: inline-block;
   height: 45px;
   width: 45px;
 }
 header.top-header nav ul {
-  background-color: black;
+  background-color: #53354A;
   display: block;
   height: 0;
   list-style-type: none;
@@ -29,19 +29,19 @@ header.top-header nav ul {
   padding-left: 0;
 }
 header.top-header nav ul li {
-  border-bottom: 2px solid black;
-  background-color: #E523E5;
+  border-bottom: 2px solid #53354A;
+  background-color: #E84545;
   display: block;
   font-size: 1.5em;
   padding: 20px 0;
 }
 header.top-header nav ul li a {
-  color: black;
+  color: #E84545;
   text-decoration: none;
   transition: all .5s ease;
 }
 header.top-header nav ul li a:hover {
-  color: #f5acf5;
+  color: #f9cdcd;
 }
 header.top-header nav #menu-toggle {
   display: none;
@@ -53,7 +53,7 @@ header.top-header nav #menu-toggle:checked ~ ul {
   padding-top: 15px;
 }
 header.top-header nav .label-toggle {
-  background: linear-gradient(to bottom, #E523E5 0%, #E523E5 20%, transparent 20%, transparent 40%, #E523E5 40%, #E523E5 60%, transparent 60%, transparent 80%, #E523E5 80%, #E523E5 100%);
+  background: linear-gradient(to bottom, #E84545 0%, #E84545 20%, transparent 20%, transparent 40%, #E84545 40%, #E84545 60%, transparent 60%, transparent 80%, #E84545 80%, #E84545 100%);
   cursor: pointer;
   display: block;
   float: right;
@@ -84,7 +84,7 @@ header.top-header nav .label-toggle {
     background-color: inherit;
   }
   header.top-header nav ul li a {
-    color: #E523E5;
+    color: #E84545;
   }
   header.top-header nav .label-toggle {
     display: none;
@@ -95,95 +95,23 @@ header.top-header nav .label-toggle {
   src: url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 }
 h1 {
-  color: #E523E5;
+  color: #53354A;
 }
 body {
   margin: 0;
   padding: 0;
   font-family: 'Oswald', Arial, Helvetica, sans-serif;
 }
-body div .article-container {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  padding-top: 100px;
-}
-body div .article-container article {
-  min-height: 400px;
-  margin: 5px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: column;
-}
-body div .article-container article header {
-  padding: 0;
-  margin: 0;
-  min-height: 100px;
-  border-bottom: 1px solid #eee;
-  flex: 1 1 25%;
-  order: 1;
-}
-body div .article-container article header picture {
-  min-height: 75px;
-}
-body div .article-container article header h2 {
-  margin-top: 10px;
-}
-body div .article-container article header p {
-  text-align: center;
-  margin-bottom: 0;
-}
-body div .article-container article section {
-  min-height: 300px;
-  flex: 1 1 75%;
-  order: 2;
-}
-body div .article-container article section p {
-  text-align: center;
-}
-body div footer {
+body footer {
   height: 100vh;
-  background-color: black;
+  background-color: #53354A;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-/* Desktop Styles */
-@media only screen and (min-width: 961px) {
-  body div .article-container {
-    min-width: 960px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-  }
-  body div .article-container article {
-    max-width: 500px;
-    flex-basis: 32%;
-    transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0.2s ease;
-  }
-  body div .article-container article:hover {
-    box-shadow: 0 8px 50px rgba(0, 0, 0, 0.2);
-    transform: scale(1.05);
-    transition: box-shadow 0.2s ease, transform 0.2s ease, z-index 0s 0.2s ease;
-    z-index: 2;
-  }
-  body div .article-container article header {
-    min-height: 200px;
-  }
-  body div .article-container article header picture {
-    min-height: 150px;
-  }
-  body div .article-container article header picture img {
-    height: 185px;
-  }
-  body div .article-container article section {
-    min-height: 250px;
-  }
+body footer h1 {
+  color: #E84545;
 }
+/* Desktop Styles */
 
 /*# sourceMappingURL=styles.css.map*/
