@@ -1,0 +1,1 @@
+export enum View { Start, Examples, Reviews };

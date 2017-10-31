@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1052,9 +1052,25 @@ exports.default = preact;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", { value: true });
+var View;
+(function (View) {
+    View[View["Start"] = 0] = "Start";
+    View[View["Examples"] = 1] = "Examples";
+    View[View["Reviews"] = 2] = "Reviews";
+})(View = exports.View || (exports.View = {}));
+;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _preact = __webpack_require__(0);
 
-__webpack_require__(2);
+__webpack_require__(3);
 
 // this holds our rendered root element so we can re-render in response to HMR updates.
 // This is the entry file, which kicks off all rendering.
@@ -1070,7 +1086,7 @@ var root = void 0;
 // Making our app's initialization a function means it's repeatable.
 function init() {
 	// HMR requires that this be a require()
-	var App = __webpack_require__(3).default;
+	var App = __webpack_require__(4).default;
 
 	// render the app and save the new root element:
 	root = (0, _preact.render)((0, _preact.h)(App, null), document.body, root);
@@ -1083,50 +1099,10 @@ init();
 if (false) module.hot.accept('./components/app', init);
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var header_1 = __webpack_require__(4);
-var content_1 = __webpack_require__(5);
-var footer_1 = __webpack_require__(6);
-var App = /** @class */function (_super) {
-    __extends(App, _super);
-    function App() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    App.prototype.render = function () {
-        return preact_1.h("div", null, preact_1.h(header_1.default, null), preact_1.h(content_1.default, null), preact_1.h(footer_1.default, null));
-    };
-    return App;
-}(preact_1.Component);
-exports.default = App;
 
 /***/ }),
 /* 4 */
@@ -1153,20 +1129,90 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var preact_1 = __webpack_require__(0);
+var header_1 = __webpack_require__(5);
+var content_1 = __webpack_require__(6);
+var examples_1 = __webpack_require__(7);
+var reviews_1 = __webpack_require__(8);
+var footer_1 = __webpack_require__(9);
+var view_1 = __webpack_require__(1);
+var App = /** @class */function (_super) {
+    __extends(App, _super);
+    function App() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.renderCallback = function (view) {
+            _this.setState({ currentView: view });
+        };
+        _this.renderStart = function () {
+            return preact_1.h(content_1.default, null);
+        };
+        _this.renderExamples = function () {
+            return preact_1.h(examples_1.default, null);
+        };
+        _this.renderReviews = function () {
+            return preact_1.h(reviews_1.default, null);
+        };
+        _this.renderContent = function () {
+            var html = _this.renderStart();
+            if (_this.state.currentView === view_1.View.Examples) return _this.renderExamples();
+            if (_this.state.currentView === view_1.View.Reviews) return _this.renderReviews();
+            return preact_1.h("div", { className: "content-container" }, html);
+        };
+        return _this;
+    }
+    App.prototype.render = function () {
+        return preact_1.h("div", null, preact_1.h(header_1.default, { renderCallback: this.renderCallback }), this.renderContent(), preact_1.h(footer_1.default, null));
+    };
+    return App;
+}(preact_1.Component);
+exports.default = App;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var view_1 = __webpack_require__(1);
 var Header = /** @class */function (_super) {
     __extends(Header, _super);
     function Header() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Header.prototype.render = function () {
-        return preact_1.h("header", { className: "top-header" }, preact_1.h("nav", { className: "wrapper" }, preact_1.h("div", { className: "logo" }), preact_1.h("input", { type: "checkbox", id: "menu-toggle" }), preact_1.h("label", { for: "menu-toggle", class: "label-toggle" }), preact_1.h("ul", { id: "nav-menu" }, preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Lorem")), preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Ipsum")), preact_1.h("li", null, preact_1.h("a", { href: "#" }, "Serum")))));
+        var _this = this;
+        return preact_1.h("header", { className: "top-header" }, preact_1.h("nav", { className: "wrapper" }, preact_1.h("div", { className: "logo" }), preact_1.h("input", { type: "checkbox", id: "menu-toggle" }), preact_1.h("label", { for: "menu-toggle", class: "label-toggle" }), preact_1.h("ul", { id: "nav-menu" }, preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Start);
+            } }, "Me")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Examples);
+            } }, "Stuff I did")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Reviews);
+            } }, "Reviews")))));
     };
     return Header;
 }(preact_1.Component);
 exports.default = Header;
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1196,14 +1242,88 @@ var Content = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Content.prototype.render = function () {
-        return preact_1.h("div", { className: "article-container" });
+        return preact_1.h("div", null, preact_1.h("h1", null, "MEE"));
     };
     return Content;
 }(preact_1.Component);
 exports.default = Content;
 
 /***/ }),
-/* 6 */
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Examples = /** @class */function (_super) {
+    __extends(Examples, _super);
+    function Examples() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Examples.prototype.render = function () {
+        return preact_1.h("div", null, preact_1.h("h1", null, "Examples"));
+    };
+    return Examples;
+}(preact_1.Component);
+exports.default = Examples;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Reviews = /** @class */function (_super) {
+    __extends(Reviews, _super);
+    function Reviews() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Reviews.prototype.render = function () {
+        return preact_1.h("div", null, preact_1.h("h1", null, "Reviews"));
+    };
+    return Reviews;
+}(preact_1.Component);
+exports.default = Reviews;
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

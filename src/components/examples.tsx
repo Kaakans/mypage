@@ -1,9 +1,9 @@
 import { h, Component } from 'preact';
 
-export default class Content extends Component<any, any> {
+export default class Examples extends Component<any, any> {
     render() {
         return <div>
-            <h1>MEE</h1>
+            <h1>Examples</h1>
         </div>
     }
 }
