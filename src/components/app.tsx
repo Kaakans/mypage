@@ -32,10 +32,10 @@ export default class App extends Component<any, IComponentState> {
         var html = this.renderStart();
 
         if (this.state.currentView === View.Examples)
-        return this.renderExamples();
+            html = this.renderExamples();
             
         if (this.state.currentView === View.Reviews)
-            return this.renderReviews();
+            html = this.renderReviews();
 
         return <div className="content-container">{html}</div>;
     }

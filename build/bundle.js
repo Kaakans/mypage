@@ -1153,8 +1153,8 @@ var App = /** @class */function (_super) {
         };
         _this.renderContent = function () {
             var html = _this.renderStart();
-            if (_this.state.currentView === view_1.View.Examples) return _this.renderExamples();
-            if (_this.state.currentView === view_1.View.Reviews) return _this.renderReviews();
+            if (_this.state.currentView === view_1.View.Examples) html = _this.renderExamples();
+            if (_this.state.currentView === view_1.View.Reviews) html = _this.renderReviews();
             return preact_1.h("div", { className: "content-container" }, html);
         };
         return _this;
@@ -1242,7 +1242,7 @@ var Content = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Content.prototype.render = function () {
-        return preact_1.h("div", null, preact_1.h("h1", null, "MEE"));
+        return preact_1.h("h1", null, "MEE");
     };
     return Content;
 }(preact_1.Component);
@@ -1279,7 +1279,7 @@ var Examples = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Examples.prototype.render = function () {
-        return preact_1.h("div", null, preact_1.h("h1", null, "Examples"));
+        return preact_1.h("h1", null, "Examples");
     };
     return Examples;
 }(preact_1.Component);
@@ -1316,7 +1316,7 @@ var Reviews = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Reviews.prototype.render = function () {
-        return preact_1.h("div", null, preact_1.h("h1", null, "Reviews"));
+        return preact_1.h("div", { className: "reviews" }, preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor."))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor."))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor."))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor."))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor."))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor."))));
     };
     return Reviews;
 }(preact_1.Component);
