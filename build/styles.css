@@ -35,7 +35,7 @@ header.top-header nav ul li {
   padding: 20px 0;
 }
 header.top-header nav ul li a {
-  color: #E84545;
+  color: #53354A;
   text-decoration: none;
   transition: all .5s ease;
 }
@@ -111,6 +111,7 @@ header.top-header nav .label-toggle {
   justify-content: flex-start;
 }
 .reviews .review-container {
+  background-color: rgba(255, 255, 255, 0.25);
   width: 90%;
   min-height: 300px;
   margin: 10px;
@@ -142,20 +143,34 @@ header.top-header nav .label-toggle {
   margin: 0;
 }
 .reviews .review-container:nth-child(odd) {
+  border-width: 3px 4px 3px 5px;
+  border-radius: '95% 4% 92% 5% / 4% 95% 6% 95%';
+  transform: rotate(0.2deg);
   margin-right: 0;
   border-right: 0;
   align-self: flex-end;
 }
 .reviews .review-container:nth-child(odd) .review-image {
   background-color: blue;
+  transform: rotate(-0.2deg);
+}
+.reviews .review-container:nth-child(odd) .review-content {
+  transform: rotate(-0.2deg);
 }
 .reviews .review-container:nth-child(even) {
+  border-width: 3px 3px 5px 5px;
+  border-radius: '4% 92% 6% 96% / 95% 6% 92% 4%';
+  transform: rotate(-0.2deg);
   margin-left: 0;
   border-left: 0;
   align-self: flex-start;
 }
 .reviews .review-container:nth-child(even) .review-image {
   background-color: red;
+  transform: rotate(0.2deg);
+}
+.reviews .review-container:nth-child(even) .review-content {
+  transform: rotate(0.2deg);
 }
 /* Desktop Styles */
 @media only screen and (min-width: 961px) {
@@ -188,11 +203,13 @@ h1 {
 }
 body {
   margin: 0;
-  padding: 0;
+  margin-left: -1px;
+  padding-right: 1px;
   font-family: 'Oswald', Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   background-color: #53354A;
+  transition: all .5s ease;
 }
 body h1:first-child {
   margin-top: 0;
