@@ -11,11 +11,14 @@ h1 {
 
 body {
     margin: 0;
-    padding: 0;
+    margin-left: -1px;
+    padding-right: 1px;
     font-family: 'Oswald', Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
     background-color: @header-background;
+
+    transition: all .5s ease;
     
     & h1:first-child {
         margin-top: 0;

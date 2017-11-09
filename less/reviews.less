@@ -8,6 +8,7 @@
 
     .review-container {
 
+        background-color: rgba(255, 255, 255, 0.25);
         width: 90%;
         min-height: 300px;
 
@@ -47,23 +48,41 @@
 
         &:nth-child(odd) {
 
+            border-width: 3px 4px 3px 5px;
+            border-radius: '95% 4% 92% 5% / 4% 95% 6% 95%';
+            transform: rotate(0.2deg);
+
             margin-right: 0;
             border-right: 0;
             align-self: flex-end;
 
             .review-image {
                 background-color: blue;
+                transform: rotate(-0.2deg);
+            }
+
+            .review-content {
+                transform: rotate(-0.2deg);
             }
         }
 
         &:nth-child(even) {
             
+            border-width: 3px 3px 5px 5px;
+            border-radius: '4% 92% 6% 96% / 95% 6% 92% 4%';
+            transform: rotate(-0.2deg);
+
             margin-left: 0;
             border-left: 0;
             align-self: flex-start;
 
             .review-image {
                 background-color: red;
+                transform: rotate(0.2deg);
+            }
+            
+            .review-content {
+                transform: rotate(0.2deg);
             }
         }
     }
