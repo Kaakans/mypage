@@ -295,6 +295,7 @@ body .content-container:first-child {
   width: 100%;
 }
 body footer {
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
