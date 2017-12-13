@@ -1,0 +1,59 @@
+@import 'colors';
+
+.examples {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    .example {
+        padding: 10px 20px;
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+
+            img {
+                content: url("../src/images/zelda_light.jpg");
+
+                width: 100%;
+                height: auto;
+                max-height: 400px;
+
+                align-self: center;
+            }
+
+            .info {
+                background-color: @background-highlight;
+                padding: 20px;
+                
+                .title {
+                    margin-top: 10px;
+                    font-size: 2em;
+                }
+    
+                a {
+                    color: @primary;
+                    font-weight: bold;
+                }
+    
+                .text {
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 961px) {
+    .examples {
+        flex-direction: row;
+        // flex-grow: 1;
+    
+        .example {
+            max-width: 800px;
+        }
+    }
+}

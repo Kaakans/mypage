@@ -3,6 +3,7 @@
 @import 'fonts';
 @import 'scrollbar';
 @import 'reviews';
+@import 'examples';
 
 
 h1 {
@@ -11,8 +12,6 @@ h1 {
 
 body {
     margin: 0;
-    margin-left: -1px;
-    padding-right: 1px;
     font-family: 'Oswald', Arial, Helvetica, sans-serif;
     color: @primary;
     display: flex;
@@ -26,7 +25,7 @@ body {
     }
 
     .content-container {
-        padding-top: 77px;
+        padding-top: 97px;
 
         &:first-child {
             width: 100%;
@@ -34,10 +33,28 @@ body {
     }
 
     footer {
-        height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        .label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            a {
+                color: @primary;
+            }
+
+            i {
+                padding-right: 5px;
+            }
+
+            span {
+                padding-left: 5px;
+            }
+        }
 
         h1 {
             color: @primary;

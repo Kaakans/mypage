@@ -1132,8 +1132,8 @@ var preact_1 = __webpack_require__(0);
 var header_1 = __webpack_require__(5);
 var content_1 = __webpack_require__(6);
 var examples_1 = __webpack_require__(7);
-var reviews_1 = __webpack_require__(8);
-var footer_1 = __webpack_require__(9);
+var reviews_1 = __webpack_require__(9);
+var footer_1 = __webpack_require__(10);
 var view_1 = __webpack_require__(1);
 var App = /** @class */function (_super) {
     __extends(App, _super);
@@ -1273,13 +1273,14 @@ var __extends = undefined && undefined.__extends || function () {
 }();
 Object.defineProperty(exports, "__esModule", { value: true });
 var preact_1 = __webpack_require__(0);
+var example_1 = __webpack_require__(8);
 var Examples = /** @class */function (_super) {
     __extends(Examples, _super);
     function Examples() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Examples.prototype.render = function () {
-        return preact_1.h("h1", null, "Examples");
+        return preact_1.h("div", { className: "examples" }, preact_1.h(example_1.default, null), preact_1.h(example_1.default, null), preact_1.h(example_1.default, null), preact_1.h(example_1.default, null));
     };
     return Examples;
 }(preact_1.Component);
@@ -1287,6 +1288,43 @@ exports.default = Examples;
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Example = /** @class */function (_super) {
+    __extends(Example, _super);
+    function Example() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Example.prototype.render = function () {
+        return preact_1.h("div", { className: "example" }, preact_1.h("div", { className: "box" }, preact_1.h("img", null), preact_1.h("div", { className: "info" }, preact_1.h("div", { className: "title" }, "Example"), preact_1.h("a", { href: "example.com" }, "example.com"), preact_1.h("div", { className: "text" }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit."))));
+    };
+    return Example;
+}(preact_1.Component);
+exports.default = Example;
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1323,7 +1361,7 @@ var Reviews = /** @class */function (_super) {
 exports.default = Reviews;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1353,7 +1391,7 @@ var Footer = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Footer.prototype.render = function () {
-        return preact_1.h("footer", null, preact_1.h("h1", null, "Much Love"));
+        return preact_1.h("footer", null, preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-facebook-official" }), preact_1.h("a", { href: "http://facebook.com/kakanss" }, "Jonathan Boellke")), preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-phone" }), preact_1.h("span", null, "070 - 555 72 75")), preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-envelope" }), preact_1.h("span", null, "jonathanboellke@gmail.com")));
     };
     return Footer;
 }(preact_1.Component);
