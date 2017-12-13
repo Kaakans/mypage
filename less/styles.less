@@ -6,7 +6,7 @@
 
 
 h1 {
-    color: black;
+    color: @primary;
 }
 
 body {
@@ -14,9 +14,10 @@ body {
     margin-left: -1px;
     padding-right: 1px;
     font-family: 'Oswald', Arial, Helvetica, sans-serif;
+    color: @primary;
     display: flex;
     flex-direction: column;
-    background-color: @header-background;
+    background-color: @background-primary;
 
     transition: all .5s ease;
     
@@ -39,7 +40,7 @@ body {
         align-items: center;
 
         h1 {
-            color: @header-primary;
+            color: @primary;
         }
     }
 }

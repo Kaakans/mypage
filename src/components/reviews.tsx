@@ -4,7 +4,9 @@ export default class Reviews extends Component<any, any> {
     render() {
         return <div className="reviews">
             <div className="review-container">
-                <div className="review-image"></div>
+                <div className="review-image">
+                    <img />
+                </div>
                 <div className="review-content">
                     <h1>Review title</h1>
                     <p>
@@ -30,7 +32,9 @@ export default class Reviews extends Component<any, any> {
                 </div>
             </div>
             <div className="review-container">
-                <div className="review-image"></div>
+                <div className="review-image">
+                    <img />
+                </div>
                 <div className="review-content">
                     <h1>Review title</h1>
                     <p>
@@ -56,7 +60,9 @@ export default class Reviews extends Component<any, any> {
                 </div>
             </div>
             <div className="review-container">
-                <div className="review-image"></div>
+            <div className="review-image">
+                    <img />
+                </div>
                 <div className="review-content">
                     <h1>Review title</h1>
                     <p>
@@ -82,7 +88,9 @@ export default class Reviews extends Component<any, any> {
                 </div>
             </div>
             <div className="review-container">
-                <div className="review-image"></div>
+            <div className="review-image">
+                    <img />
+                </div>
                 <div className="review-content">
                     <h1>Review title</h1>
                     <p>
@@ -108,7 +116,9 @@ export default class Reviews extends Component<any, any> {
                 </div>
             </div>
             <div className="review-container">
-                <div className="review-image"></div>
+            <div className="review-image">
+                    <img />
+                </div>
                 <div className="review-content">
                     <h1>Review title</h1>
                     <p>
@@ -134,7 +144,9 @@ export default class Reviews extends Component<any, any> {
                 </div>
             </div>
             <div className="review-container">
-                <div className="review-image"></div>
+            <div className="review-image">
+                    <img />
+                </div>
                 <div className="review-content">
                     <h1>Review title</h1>
                     <p>

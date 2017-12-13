@@ -6,10 +6,10 @@ header.top-header {
     nav {
         display: block;
         padding: 1em 20px;
-        background-color: @header-background;
+        background-color: @background-secondary;
         
         .logo {
-            background-color: @header-primary;
+            background-color: @black;
             border-radius: 50px;
             display: inline-block;
             height: 45px;
@@ -29,8 +29,8 @@ header.top-header {
             padding-left: 0; 
 
             li {
-                border-bottom: 2px solid @header-background;
-                background-color: @header-primary;
+                border-bottom: 2px solid @background-secondary;
+                background-color: @trietary;
                 display: block;
                 font-size: 1.5em;
                 padding: 20px 0;
@@ -41,7 +41,7 @@ header.top-header {
                     transition: all .5s ease;
 
                     &:hover {
-                        color: @header-primary-dark;
+                        color: @secondary;
                     }
                 }
             }
@@ -59,7 +59,7 @@ header.top-header {
         }
           
         .label-toggle {
-            background: linear-gradient(to bottom, @header-primary 0%, @header-primary 20%, transparent 20%, transparent 40%, @header-primary 40%, @header-primary 60%, transparent 60%, transparent 80%, @header-primary 80%, @header-primary 100%); //Gradient Hamburger
+            background: linear-gradient(to bottom, @trietary 0%, @trietary 20%, transparent 20%, transparent 40%, @trietary 40%, @trietary 60%, transparent 60%, transparent 80%, @trietary 80%, @trietary 100%); //Gradient Hamburger
             cursor: pointer;
             display: block;
             float: right;
@@ -93,8 +93,10 @@ header.top-header {
                     padding: 0;
                     background-color: inherit;
 
-                    a{
-                        color: @header-primary;
+                    a {
+
+                        font-weight: bolder;
+                        color: @black;
                     }
                 }
             }

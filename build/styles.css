@@ -6,10 +6,10 @@
 header.top-header nav {
   display: block;
   padding: 1em 20px;
-  background-color: #53354A;
+  background-color: #ffffff;
 }
 header.top-header nav .logo {
-  background-color: #E84545;
+  background-color: #000000;
   border-radius: 50px;
   display: inline-block;
   height: 45px;
@@ -28,19 +28,19 @@ header.top-header nav ul {
   padding-left: 0;
 }
 header.top-header nav ul li {
-  border-bottom: 2px solid #53354A;
-  background-color: #E84545;
+  border-bottom: 2px solid #ffffff;
+  background-color: #984b43;
   display: block;
   font-size: 1.5em;
   padding: 20px 0;
 }
 header.top-header nav ul li a {
-  color: #53354A;
+  color: #ffffff;
   text-decoration: none;
   transition: all .5s ease;
 }
 header.top-header nav ul li a:hover {
-  color: #f9cdcd;
+  color: #eac67a;
 }
 header.top-header nav #menu-toggle {
   display: none;
@@ -52,7 +52,7 @@ header.top-header nav #menu-toggle:checked ~ ul {
   padding-top: 15px;
 }
 header.top-header nav .label-toggle {
-  background: linear-gradient(to bottom, #E84545 0%, #E84545 20%, transparent 20%, transparent 40%, #E84545 40%, #E84545 60%, transparent 60%, transparent 80%, #E84545 80%, #E84545 100%);
+  background: linear-gradient(to bottom, #984b43 0%, #984b43 20%, transparent 20%, transparent 40%, #984b43 40%, #984b43 60%, transparent 60%, transparent 80%, #984b43 80%, #984b43 100%);
   cursor: pointer;
   display: block;
   float: right;
@@ -83,7 +83,8 @@ header.top-header nav .label-toggle {
     background-color: inherit;
   }
   header.top-header nav ul li a {
-    color: #E84545;
+    font-weight: bolder;
+    color: #000000;
   }
   header.top-header nav .label-toggle {
     display: none;
@@ -94,16 +95,16 @@ header.top-header nav .label-toggle {
   src: url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 }
 ::-webkit-scrollbar-track {
-  background-color: #53354A;
+  background-color: #171717;
 }
 ::-webkit-scrollbar {
   width: 12px;
-  background-color: #53354A;
+  background-color: #171717;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px #eee;
-  background-color: #53354A;
+  background-color: #171717;
 }
 .reviews {
   display: flex;
@@ -111,23 +112,23 @@ header.top-header nav .label-toggle {
   justify-content: flex-start;
 }
 .reviews .review-container {
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: #232323;
   width: 90%;
   min-height: 300px;
   margin: 10px;
   padding: 20px;
-  border: 5px solid black;
+  border: 5px solid #232323;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
 }
 .reviews .review-container .review-image {
-  width: 100%;
+  max-width: 100%;
   min-width: 300px;
-  height: 100%;
-  min-height: 300px;
-  border: 1px solid black;
+  height: auto;
+  max-height: 300px;
+  border: 1px solid #232323;
   order: 1;
 }
 .reviews .review-container .review-content {
@@ -149,7 +150,7 @@ header.top-header nav .label-toggle {
   padding: 10px;
   padding-bottom: 0;
   font-size: 1.5em;
-  color: #e9ba1f;
+  color: #eac67a;
   order: 3;
 }
 .reviews .review-container:nth-child(odd) {
@@ -161,8 +162,12 @@ header.top-header nav .label-toggle {
   align-self: flex-end;
 }
 .reviews .review-container:nth-child(odd) .review-image {
-  background-color: blue;
   transform: rotate(-0.2deg);
+}
+.reviews .review-container:nth-child(odd) .review-image img {
+  content: url(b915c1c45e773965020b4b273759936f.jpg);
+  width: 100%;
+  height: auto;
 }
 .reviews .review-container:nth-child(odd) .review-content {
   transform: rotate(-0.2deg);
@@ -176,8 +181,12 @@ header.top-header nav .label-toggle {
   align-self: flex-start;
 }
 .reviews .review-container:nth-child(even) .review-image {
-  background-color: red;
   transform: rotate(0.2deg);
+}
+.reviews .review-container:nth-child(even) .review-image img {
+  content: url(7f72f7481079df96d5abd4432f82078a.jpg);
+  width: 100%;
+  height: auto;
 }
 .reviews .review-container:nth-child(even) .review-content {
   transform: rotate(0.2deg);
@@ -218,16 +227,17 @@ header.top-header nav .label-toggle {
   }
 }
 h1 {
-  color: black;
+  color: #ffffff;
 }
 body {
   margin: 0;
   margin-left: -1px;
   padding-right: 1px;
   font-family: 'Oswald', Arial, Helvetica, sans-serif;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  background-color: #53354A;
+  background-color: #171717;
   transition: all .5s ease;
 }
 body h1:first-child {
@@ -246,7 +256,7 @@ body footer {
   align-items: center;
 }
 body footer h1 {
-  color: #E84545;
+  color: #ffffff;
 }
 /* Desktop Styles */
 

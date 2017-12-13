@@ -8,13 +8,13 @@
 
     .review-container {
 
-        background-color: rgba(255, 255, 255, 0.25);
+        background-color: @background-highlight;
         width: 90%;
         min-height: 300px;
 
         margin: 10px;
         padding: 20px;
-        border: 5px solid black;
+        border: 5px solid @background-highlight;
 
         display: flex;
         flex-direction: column;
@@ -22,11 +22,11 @@
         align-items: center;
 
         .review-image {
-            width: 100%;
+            max-width: 100%;
             min-width: 300px;
-            height: 100%;
-            min-height: 300px;
-            border: 1px solid black;
+            height: auto;
+            max-height: 300px;
+            border: 1px solid @background-highlight;
 
             order: 1;
         }
@@ -56,7 +56,7 @@
             padding-bottom: 0;
 
             font-size: 1.5em;
-            color: @review-score;
+            color: @secondary;
 
             order: 3;
         }
@@ -72,8 +72,15 @@
             align-self: flex-end;
 
             .review-image {
-                background-color: blue;
+                // background-color: blue;
+                // background-image: url("../src/images/zelda_light.jpg");
                 transform: rotate(-0.2deg);
+
+                img {
+                    content: url("../src/images/zelda_light.jpg");
+                    width: 100%;
+                    height: auto;
+                }
             }
 
             .review-content {
@@ -92,8 +99,15 @@
             align-self: flex-start;
 
             .review-image {
-                background-color: red;
+                // background-color: red;
+                // background-image: url("../src/images/zelda_dark.jpg");
                 transform: rotate(0.2deg);
+
+                img {
+                    content: url("../src/images/zelda_dark.jpg");
+                    width: 100%;
+                    height: auto;
+                }
             }
             
             .review-content {
@@ -159,33 +173,3 @@
     }
 
 }
-
-
-// .box{
-//     margin:25px;
-//     width:250px;
-//     height:250px;
-//     background:#fff;
-//     border: solid black;
-//     border-color: black;
-//     float:left; 
-
-//     &.box1{
-//         border-width: 3px 4px 3px 5px;
-//         border-radius:95% 4% 92% 5%/4% 95% 6% 95%;
-//         transform: rotate(2deg);
-//     }
-      
-//     &.box2{
-//         width:350px;
-//         border-width: 3px 3px 5px 5px;
-//         border-radius:4% 95% 6% 95%/95% 4% 92% 5%;
-//         transform: rotate(-2deg);
-//     }
-    
-//     &.box3{
-//         border-width: 5px 3px 3px 5px;
-//         border-radius:95% 4% 97% 5%/4% 94% 3% 95%;
-//         transform: rotate(2deg);
-//     }
-// }
