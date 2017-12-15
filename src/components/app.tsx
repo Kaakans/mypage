@@ -4,6 +4,7 @@ import Content from './content';
 import Examples from './examples';
 import Reviews from './reviews';
 import Footer from './footer';
+import Snake from './snake';
 import { View } from './enums/view';
 
 export interface IComponentState {
@@ -28,6 +29,10 @@ export default class App extends Component<any, IComponentState> {
         return <Reviews />;
     }
 
+    private renderSnake = () => {
+        return <Snake />;
+    }
+
     private renderContent = () => {
         var html = this.renderStart();
 
@@ -36,6 +41,9 @@ export default class App extends Component<any, IComponentState> {
             
         if (this.state.currentView === View.Reviews)
             html = this.renderReviews();
+
+        if (this.state.currentView === View.Snake)
+            html = this.renderSnake(); 
 
         return <div className="content-container">{html}</div>;
     }

@@ -286,6 +286,32 @@ header.top-header nav .label-toggle {
     flex-grow: 1;
   }
 }
+.game-container .snake-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.game-container .snake-container h1 {
+  display: initial;
+}
+.game-container .snake-container canvas {
+  display: none;
+}
+@media only screen and (min-width: 961px) {
+  .game-container .snake-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .game-container .snake-container h1 {
+    display: none;
+  }
+  .game-container .snake-container canvas {
+    display: initial;
+  }
+}
 h1 {
   color: #ffffff;
 }

@@ -1,0 +1,52 @@
+@import 'colors';
+
+.game-container {
+
+    .snake-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            display: initial;
+        }
+
+        canvas {
+            display: none;
+        }
+    }
+}
+
+
+@media only screen and (min-width: 961px) {
+    .game-container {
+        
+        .snake-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            h1 {
+                display: none;
+            }
+            
+            canvas {
+                display: initial;
+
+                // .ground-white {
+                //     content: url("../src/images/ground-white.png");
+                // }
+
+                // .ground-black {
+                //     content: url("../src/images/ground-black.png");
+                // }
+
+                // .heart {
+                //     content: url("../src/images/heart.png");
+                // }
+            }
+        }
+    }
+}

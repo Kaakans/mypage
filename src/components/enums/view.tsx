@@ -1,1 +1,1 @@
-export enum View { Start, Examples, Reviews };
+export enum View { Start, Examples, Reviews, Snake };

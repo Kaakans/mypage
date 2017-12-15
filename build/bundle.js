@@ -1058,6 +1058,7 @@ var View;
     View[View["Start"] = 0] = "Start";
     View[View["Examples"] = 1] = "Examples";
     View[View["Reviews"] = 2] = "Reviews";
+    View[View["Snake"] = 3] = "Snake";
 })(View = exports.View || (exports.View = {}));
 ;
 
@@ -1134,6 +1135,7 @@ var content_1 = __webpack_require__(6);
 var examples_1 = __webpack_require__(7);
 var reviews_1 = __webpack_require__(9);
 var footer_1 = __webpack_require__(10);
+var snake_1 = __webpack_require__(11);
 var view_1 = __webpack_require__(1);
 var App = /** @class */function (_super) {
     __extends(App, _super);
@@ -1151,10 +1153,14 @@ var App = /** @class */function (_super) {
         _this.renderReviews = function () {
             return preact_1.h(reviews_1.default, null);
         };
+        _this.renderSnake = function () {
+            return preact_1.h(snake_1.default, null);
+        };
         _this.renderContent = function () {
             var html = _this.renderStart();
             if (_this.state.currentView === view_1.View.Examples) html = _this.renderExamples();
             if (_this.state.currentView === view_1.View.Reviews) html = _this.renderReviews();
+            if (_this.state.currentView === view_1.View.Snake) html = _this.renderSnake();
             return preact_1.h("div", { className: "content-container" }, html);
         };
         return _this;
@@ -1202,6 +1208,8 @@ var Header = /** @class */function (_super) {
         return preact_1.h("header", { className: "top-header" }, preact_1.h("nav", { className: "wrapper" }, preact_1.h("div", { className: "logo" }), preact_1.h("input", { type: "checkbox", id: "menu-toggle" }), preact_1.h("label", { for: "menu-toggle", class: "label-toggle" }), preact_1.h("ul", { id: "nav-menu" }, preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
                 return _this.props.renderCallback(view_1.View.Start);
             } }, "Me")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Snake);
+            } }, "Snake!")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
                 return _this.props.renderCallback(view_1.View.Examples);
             } }, "Stuff I did")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
                 return _this.props.renderCallback(view_1.View.Reviews);
@@ -1396,6 +1404,139 @@ var Footer = /** @class */function (_super) {
     return Footer;
 }(preact_1.Component);
 exports.default = Footer;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Coordinate = /** @class */function () {
+    function Coordinate(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    return Coordinate;
+}();
+exports.Coordinate = Coordinate;
+var Snake = /** @class */function (_super) {
+    __extends(Snake, _super);
+    function Snake() {
+        var _this = _super.call(this) || this;
+        _this.columns = 26;
+        _this.rows = 26;
+        _this.boxSize = 32;
+        _this.heart_img = new Image();
+        _this.heart_img.className = "heart";
+        _this.heart_img.src = "../src/images/heart.png";
+        _this.setScore(0);
+        _this.initiateSnake();
+        _this.generateHeart();
+        return _this;
+    }
+    Object.defineProperty(Snake.prototype, "ctx", {
+        get: function get() {
+            return this.cvs ? this.cvs.getContext("2d") : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Snake.prototype, "snake", {
+        get: function get() {
+            return this.state.snake;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Snake.prototype, "heart", {
+        get: function get() {
+            return this.state.heart;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Snake.prototype.setScore = function (score) {
+        this.setState({ score: score });
+    };
+    Snake.prototype.setSnake = function (snake) {
+        this.setState({ snake: snake });
+    };
+    Snake.prototype.generateHeart = function () {
+        var heart = new Coordinate(Math.floor(Math.random() * 24 + 1) * this.boxSize, Math.floor(Math.random() * 22 + 3) * this.boxSize);
+        this.setState({ heart: heart });
+    };
+    Snake.prototype.initiateSnake = function () {
+        var snake = [];
+        snake[0] = new Coordinate(13 * this.boxSize, 13 * this.boxSize);
+        snake[1] = new Coordinate(13 * this.boxSize, 14 * this.boxSize);
+        this.setSnake(snake);
+    };
+    Snake.prototype.draw = function () {
+        if (!this.ctx) return;
+        this.drawGround();
+        this.drawHeart();
+        this.drawSnake();
+    };
+    Snake.prototype.drawGround = function () {
+        this.ctx.fillStyle = "#232323";
+        this.ctx.fillRect(0, 0, this.boxSize * this.columns, this.boxSize * this.rows);
+        for (var x = 1; x < this.columns - 1; x++) {
+            for (var y = 3; y < this.rows - 1; y++) {
+                var xy = (x + y) % 2;
+                this.ctx.fillStyle = xy === 1 ? "black" : "white";
+                this.ctx.fillRect(x * this.boxSize, y * this.boxSize, this.boxSize, this.boxSize);
+            }
+        }
+    };
+    Snake.prototype.drawHeart = function () {
+        this.ctx.drawImage(this.heart_img, this.heart.x, this.heart.y, this.boxSize, this.boxSize);
+    };
+    Snake.prototype.drawSnake = function () {
+        for (var i = 0; i < this.state.snake.length; i++) {
+            // this.ctx.fillStyle = i === 0 ? "white" : "#eac67a";
+            this.ctx.fillStyle = "#eac67a";
+            this.ctx.fillRect(this.state.snake[i].x, this.state.snake[i].y, this.boxSize, this.boxSize);
+            this.ctx.strokeStyle = "#eac67a";
+            this.ctx.strokeRect(this.state.snake[i].x, this.state.snake[i].y, this.boxSize, this.boxSize);
+        }
+    };
+    Snake.prototype.runSnake = function () {
+        var self = this;
+        var game = setInterval(function () {
+            self.draw();
+        }, 100);
+    };
+    Snake.prototype.render = function () {
+        var _this = this;
+        return preact_1.h("div", { className: "game-container" }, preact_1.h("div", { className: "snake-container" }, preact_1.h("h1", null, "Snake is currently only available for desktop"), preact_1.h("canvas", { id: "snake-canvas", width: "832", height: "832", ref: function ref(canvas) {
+                return _this.cvs = canvas;
+            } })));
+    };
+    Snake.prototype.componentDidMount = function () {
+        this.runSnake();
+    };
+    return Snake;
+}(preact_1.Component);
+exports.default = Snake;
 
 /***/ })
 /******/ ]);
