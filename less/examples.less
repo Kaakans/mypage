@@ -6,41 +6,48 @@
     justify-content: flex-start;
     align-items: center;
 
-    .example {
-        padding: 10px 20px;
+    .example-row {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        .box {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-start;
+        .example {
+            padding: 10px 20px;
 
-            img {
-                content: url("../src/images/zelda_light.jpg");
+            .box {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
 
-                width: 100%;
-                height: auto;
-                max-height: 400px;
+                img {
+                    content: url("../src/images/zelda_light.jpg");
 
-                align-self: center;
-            }
+                    width: 100%;
+                    height: auto;
+                    max-height: 400px;
 
-            .info {
-                background-color: @background-highlight;
-                padding: 20px;
-                
-                .title {
-                    margin-top: 10px;
-                    font-size: 2em;
+                    align-self: center;
                 }
-    
-                a {
-                    color: @primary;
-                    font-weight: bold;
-                }
-    
-                .text {
-                    margin-top: 10px;
+
+                .info {
+                    background-color: @background-highlight;
+                    padding: 20px;
+                    
+                    .title {
+                        margin-top: 10px;
+                        font-size: 2em;
+                    }
+        
+                    a {
+                        color: @primary;
+                        font-weight: bold;
+                    }
+        
+                    .text {
+                        margin-top: 10px;
+                    }
                 }
             }
         }
@@ -50,10 +57,17 @@
 @media only screen and (min-width: 961px) {
     .examples {
         flex-direction: row;
-        // flex-grow: 1;
-    
-        .example {
-            max-width: 800px;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        
+        .example-row {
+            flex-direction: row;
+            justify-content: space-around;
+
+            .example {
+                max-width: 700px;
+                flex-grow: 1;
+            }
         }
     }
 }

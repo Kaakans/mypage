@@ -1280,7 +1280,7 @@ var Examples = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Examples.prototype.render = function () {
-        return preact_1.h("div", { className: "examples" }, preact_1.h(example_1.default, null), preact_1.h(example_1.default, null), preact_1.h(example_1.default, null), preact_1.h(example_1.default, null));
+        return preact_1.h("div", { className: "examples" }, preact_1.h("div", { className: "example-row" }, preact_1.h(example_1.default, null), preact_1.h(example_1.default, null)), preact_1.h("div", { className: "example-row" }, preact_1.h(example_1.default, null), preact_1.h(example_1.default, null)));
     };
     return Examples;
 }(preact_1.Component);

@@ -234,43 +234,56 @@ header.top-header nav .label-toggle {
   justify-content: flex-start;
   align-items: center;
 }
-.examples .example {
+.examples .example-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.examples .example-row .example {
   padding: 10px 20px;
 }
-.examples .example .box {
+.examples .example-row .example .box {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
-.examples .example .box img {
+.examples .example-row .example .box img {
   content: url(b915c1c45e773965020b4b273759936f.jpg);
   width: 100%;
   height: auto;
   max-height: 400px;
   align-self: center;
 }
-.examples .example .box .info {
+.examples .example-row .example .box .info {
   background-color: #232323;
   padding: 20px;
 }
-.examples .example .box .info .title {
+.examples .example-row .example .box .info .title {
   margin-top: 10px;
   font-size: 2em;
 }
-.examples .example .box .info a {
+.examples .example-row .example .box .info a {
   color: #ffffff;
   font-weight: bold;
 }
-.examples .example .box .info .text {
+.examples .example-row .example .box .info .text {
   margin-top: 10px;
 }
 @media only screen and (min-width: 961px) {
   .examples {
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
   }
-  .examples .example {
-    max-width: 800px;
+  .examples .example-row {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .examples .example-row .example {
+    max-width: 700px;
+    flex-grow: 1;
   }
 }
 h1 {
