@@ -10,31 +10,26 @@ export class Coordinate {
     }
 }
 
-export interface ISnakeState {
-    score: number;
-    snake: Array<Coordinate>;
-    heart: Coordinate;
+export enum Direction {
+    Left, Up, Right, Down
 }
 
-export default class Snake extends Component<any, ISnakeState> {
+export default class Snake extends Component<any, any> {
 
     private cvs: HTMLCanvasElement;
     private readonly boxSize: number;
     private readonly heart_img: HTMLImageElement;
 
-    private readonly columns = 26;
-    private readonly rows = 26;
+    private readonly columns = 23;
+    private readonly rows = 23;
+
+    private direction: Direction = Direction.Left;
+    private score: number;
+    private snake: Array<Coordinate>;
+    private heart: Coordinate;
 
     private get ctx() {
         return this.cvs ? this.cvs.getContext("2d") : null;
-    }
-
-    private get snake() {
-        return this.state.snake;
-    }
-
-    private get heart() {
-        return this.state.heart;
     }
 
     constructor() {
@@ -46,34 +41,25 @@ export default class Snake extends Component<any, ISnakeState> {
         this.heart_img.className = "heart";
         this.heart_img.src = "../src/images/heart.png";
         
-        this.setScore(0);
+        this.score = 0;
         this.initiateSnake();
         this.generateHeart();
     }
 
-    private setScore(score: number) {
-        this.setState({ score: score });
-    }
-
-    private setSnake(snake: Array<Coordinate>) {
-        this.setState({ snake: snake });
-    }
-
     private generateHeart() {
         let heart = new Coordinate(
-            Math.floor(Math.random()*24 + 1) * this.boxSize, 
-            Math.floor(Math.random()*22 + 3) * this.boxSize
+            Math.floor(Math.random()*(this.columns-3) + 1) * this.boxSize, 
+            Math.floor(Math.random()*(this.rows-4) + 3) * this.boxSize
         );
 
-        this.setState({ heart: heart });
+        this.heart = heart;
     }
 
     private initiateSnake() {
         let snake = [];
-        snake[0] = new Coordinate(13 * this.boxSize, 13 * this.boxSize);
-        snake[1] = new Coordinate(13 * this.boxSize, 14 * this.boxSize);
+        snake[0] = new Coordinate(11 * this.boxSize, 11 * this.boxSize);
 
-        this.setSnake(snake);
+        this.snake = snake;
     }
 
     private draw() {
@@ -82,6 +68,9 @@ export default class Snake extends Component<any, ISnakeState> {
         this.drawGround();
         this.drawHeart();
         this.drawSnake();
+        this.drawScore();
+
+        this.updateSnake();
     }
 
     private drawGround() {
@@ -102,18 +91,57 @@ export default class Snake extends Component<any, ISnakeState> {
     }
 
     private drawSnake() {
-        for(let i = 0; i < this.state.snake.length; i++) {
-            // this.ctx.fillStyle = i === 0 ? "white" : "#eac67a";
-            this.ctx.fillStyle = "#eac67a";
-            this.ctx.fillRect(this.state.snake[i].x, this.state.snake[i].y, this.boxSize, this.boxSize);
+        for(let i = 0; i < this.snake.length; i++) {
+            this.ctx.fillStyle = i === 0 ? "purple" : "#eac67a";
+            // this.ctx.fillStyle = "#eac67a";
+            this.ctx.fillRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
             
             this.ctx.strokeStyle = "#eac67a";
-            this.ctx.strokeRect(this.state.snake[i].x, this.state.snake[i].y, this.boxSize, this.boxSize);
+            this.ctx.strokeRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
+        }
+    }
+
+    private drawScore() {
+        this.ctx.drawImage(this.heart_img, 1*this.boxSize, 1*this.boxSize, this.boxSize, this.boxSize);
+
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace"
+        this.ctx.fillText(this.score.toString(), 2*this.boxSize, 1.9*this.boxSize);
+    }
+
+    private updateSnake() {
+        let snake = this.snake;
+
+        let snakeX = snake[0].x;
+        let snakeY = snake[0].y;
+
+        snake.pop();
+
+        snakeX -= this.direction === Direction.Left ? 1*this.boxSize : 0;
+        snakeY -= this.direction === Direction.Up ? 1*this.boxSize : 0;
+        snakeX += this.direction === Direction.Right ? 1*this.boxSize : 0;
+        snakeY += this.direction === Direction.Down ? 1*this.boxSize : 0;
+
+        snake.unshift(new Coordinate(snakeX, snakeY));
+        this.snake = snake;
+    }
+
+    private handleKeypress(event: KeyboardEvent) {
+        if (event.keyCode == 37) {
+            this.direction = Direction.Left;
+        } else if (event.keyCode == 38) {
+            this.direction = Direction.Up;
+        } else if (event.keyCode == 39) {
+            this.direction = Direction.Right;
+        } else if (event.keyCode == 40) {
+            this.direction = Direction.Down;
         }
     }
 
     private runSnake() {
         let self = this;
+
+        document.addEventListener("keydown", (event: KeyboardEvent) => { self.handleKeypress(event) })
         let game = setInterval(() => { self.draw() }, 100);
     }
 
@@ -121,7 +149,7 @@ export default class Snake extends Component<any, ISnakeState> {
         return <div className="game-container">
             <div className="snake-container">
                 <h1>Snake is currently only available for desktop</h1>
-                <canvas id="snake-canvas" width="832" height="832" ref={canvas => this.cvs = canvas as HTMLCanvasElement}>
+                <canvas id="snake-canvas" width="736" height="736" ref={canvas => this.cvs = canvas as HTMLCanvasElement}>
                 </canvas>
             </div>
         </div>
