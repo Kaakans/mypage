@@ -1435,6 +1435,9 @@ var Coordinate = /** @class */function () {
         this.x = x;
         this.y = y;
     }
+    Coordinate.prototype.Equals = function (cord) {
+        return cord.x === this.x && cord.y === this.y;
+    };
     return Coordinate;
 }();
 exports.Coordinate = Coordinate;
@@ -1445,6 +1448,13 @@ var Direction;
     Direction[Direction["Right"] = 2] = "Right";
     Direction[Direction["Down"] = 3] = "Down";
 })(Direction = exports.Direction || (exports.Direction = {}));
+var GameState;
+(function (GameState) {
+    GameState[GameState["Won"] = 0] = "Won";
+    GameState[GameState["Lost"] = 1] = "Lost";
+    GameState[GameState["Playing"] = 2] = "Playing";
+    GameState[GameState["Paused"] = 3] = "Paused";
+})(GameState = exports.GameState || (exports.GameState = {}));
 var Snake = /** @class */function (_super) {
     __extends(Snake, _super);
     function Snake() {
@@ -1452,11 +1462,11 @@ var Snake = /** @class */function (_super) {
         _this.columns = 23;
         _this.rows = 23;
         _this.direction = Direction.Left;
+        _this.gameState = GameState.Playing;
         _this.boxSize = 32;
         _this.heart_img = new Image();
         _this.heart_img.className = "heart";
         _this.heart_img.src = "../src/images/heart.png";
-        _this.score = 0;
         _this.initiateSnake();
         _this.generateHeart();
         return _this;
@@ -1468,8 +1478,20 @@ var Snake = /** @class */function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Snake.prototype, "score", {
+        get: function get() {
+            return this.snake ? this.snake.length - 1 : 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Snake.prototype.generateHeart = function () {
-        var heart = new Coordinate(Math.floor(Math.random() * (this.columns - 3) + 1) * this.boxSize, Math.floor(Math.random() * (this.rows - 4) + 3) * this.boxSize);
+        var heart = null;
+        do {
+            heart = new Coordinate(Math.floor(Math.random() * (this.columns - 3) + 1) * this.boxSize, Math.floor(Math.random() * (this.rows - 4) + 3) * this.boxSize);
+        } while (this.snake.some(function (part) {
+            return heart.Equals(part);
+        }));
         this.heart = heart;
     };
     Snake.prototype.initiateSnake = function () {
@@ -1479,11 +1501,14 @@ var Snake = /** @class */function (_super) {
     };
     Snake.prototype.draw = function () {
         if (!this.ctx) return;
-        this.drawGround();
-        this.drawHeart();
-        this.drawSnake();
-        this.drawScore();
-        this.updateSnake();
+        if (this.gameState === GameState.Playing) {
+            this.drawGround();
+            this.drawHeart();
+            this.drawSnake();
+            this.drawScore();
+        }
+        if (this.gameState === GameState.Won) this.drawWinScreen();
+        if (this.gameState === GameState.Lost) this.drawGameover();
     };
     Snake.prototype.drawGround = function () {
         this.ctx.fillStyle = "#232323";
@@ -1512,29 +1537,78 @@ var Snake = /** @class */function (_super) {
         this.ctx.drawImage(this.heart_img, 1 * this.boxSize, 1 * this.boxSize, this.boxSize, this.boxSize);
         this.ctx.fillStyle = "white";
         this.ctx.font = "32px Oswald, monospace";
-        this.ctx.fillText(this.score.toString(), 2 * this.boxSize, 1.9 * this.boxSize);
+        this.ctx.textAlign = "start";
+        this.ctx.fillText("" + this.score, 2 * this.boxSize, 1.9 * this.boxSize);
+    };
+    Snake.prototype.drawWinScreen = function () {
+        this.drawEndScreen("You beat snake!");
+    };
+    Snake.prototype.drawGameover = function () {
+        this.drawEndScreen("Game over");
+    };
+    Snake.prototype.drawEndScreen = function (message) {
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        this.ctx.fillRect(0, 0, this.columns * this.boxSize, this.rows * this.boxSize);
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace";
+        this.ctx.textAlign = "center";
+        var boardCenterX = this.columns / 2;
+        var boardCenterY = this.rows / 2;
+        this.ctx.fillText(message, boardCenterX * this.boxSize, boardCenterY * this.boxSize);
+        this.ctx.fillText("Final score: " + this.score, boardCenterX * this.boxSize, (1 + boardCenterY) * this.boxSize);
+        this.ctx.fillText("Press R to play again", boardCenterX * this.boxSize, (3 + boardCenterY) * this.boxSize);
+    };
+    Snake.prototype.update = function () {
+        if (this.gameState != GameState.Playing) return;
+        this.updateSnake();
+        this.updateHeart();
     };
     Snake.prototype.updateSnake = function () {
         var snake = this.snake;
         var snakeX = snake[0].x;
         var snakeY = snake[0].y;
-        snake.pop();
+        var tail = snake.pop();
         snakeX -= this.direction === Direction.Left ? 1 * this.boxSize : 0;
         snakeY -= this.direction === Direction.Up ? 1 * this.boxSize : 0;
         snakeX += this.direction === Direction.Right ? 1 * this.boxSize : 0;
         snakeY += this.direction === Direction.Down ? 1 * this.boxSize : 0;
-        snake.unshift(new Coordinate(snakeX, snakeY));
+        var newHeadPosition = new Coordinate(snakeX, snakeY);
+        snake.unshift(newHeadPosition);
+        if (newHeadPosition.Equals(this.heart)) snake.push(tail);
         this.snake = snake;
     };
+    Snake.prototype.updateHeart = function () {
+        if (this.snake[0].Equals(this.heart)) this.generateHeart();
+    };
+    Snake.prototype.checkEndConditions = function () {
+        var _this = this;
+        var snakeMaxLength = this.columns * this.rows;
+        if (this.snake.length === snakeMaxLength) this.gameState = GameState.Won;
+        var snakeCrash = this.snake.filter(function (val, i, snake) {
+            return i !== 0;
+        }).some(function (val) {
+            return val.Equals(_this.snake[0]);
+        });
+        if (snakeCrash) this.gameState = GameState.Lost;
+    };
     Snake.prototype.handleKeypress = function (event) {
-        if (event.keyCode == 37) {
-            this.direction = Direction.Left;
-        } else if (event.keyCode == 38) {
-            this.direction = Direction.Up;
-        } else if (event.keyCode == 39) {
-            this.direction = Direction.Right;
-        } else if (event.keyCode == 40) {
-            this.direction = Direction.Down;
+        if (this.gameState === GameState.Playing) {
+            if (event.keyCode == 37) {
+                this.direction = Direction.Left;
+            } else if (event.keyCode == 38) {
+                this.direction = Direction.Up;
+            } else if (event.keyCode == 39) {
+                this.direction = Direction.Right;
+            } else if (event.keyCode == 40) {
+                this.direction = Direction.Down;
+            }
+        }
+        if (this.gameState === GameState.Lost || this.gameState === GameState.Won) {
+            if (event.keyCode == 82) {
+                this.initiateSnake();
+                this.generateHeart();
+                this.gameState = GameState.Playing;
+            }
         }
     };
     Snake.prototype.runSnake = function () {
@@ -1543,8 +1617,13 @@ var Snake = /** @class */function (_super) {
             self.handleKeypress(event);
         });
         var game = setInterval(function () {
-            self.draw();
+            self.gameLoop();
         }, 100);
+    };
+    Snake.prototype.gameLoop = function () {
+        this.update();
+        this.draw();
+        this.checkEndConditions();
     };
     Snake.prototype.render = function () {
         var _this = this;
