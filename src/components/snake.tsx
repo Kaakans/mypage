@@ -25,9 +25,16 @@ export enum GameState {
 export default class Snake extends Component<any, any> {
 
     private cvs: HTMLCanvasElement;
-    private readonly boxSize: number;
     private readonly heart_img: HTMLImageElement;
 
+    private readonly dead_audio: HTMLAudioElement;
+    private readonly eat_audio: HTMLAudioElement;
+    private readonly left_audio: HTMLAudioElement;
+    private readonly up_audio: HTMLAudioElement;
+    private readonly right_audio: HTMLAudioElement;
+    private readonly down_audio: HTMLAudioElement;
+
+    private readonly boxSize = 32;
     private readonly columns = 23;
     private readonly rows = 23;
 
@@ -47,8 +54,24 @@ export default class Snake extends Component<any, any> {
     constructor() {
         super();
 
-        this.boxSize = 32;
-        
+        this.dead_audio = new Audio();
+        this.dead_audio.src = "../src/audio/dead.mp3";
+
+        this.eat_audio = new Audio();
+        this.eat_audio.src = "../src/audio/eat.mp3";
+
+        this.left_audio = new Audio();
+        this.left_audio.src = "../src/audio/left.mp3";
+
+        this.up_audio = new Audio();
+        this.up_audio.src = "../src/audio/up.mp3";
+
+        this.right_audio = new Audio();
+        this.right_audio.src = "../src/audio/right.mp3";
+
+        this.down_audio = new Audio();
+        this.down_audio.src = "../src/audio/down.mp3";
+
         this.heart_img = new Image();
         this.heart_img.className = "heart";
         this.heart_img.src = "../src/images/heart.png";
@@ -102,8 +125,10 @@ export default class Snake extends Component<any, any> {
         let newHeadPosition = new Coordinate(snakeX, snakeY);
         snake.unshift(newHeadPosition);
 
-        if (newHeadPosition.Equals(this.heart))
+        if (newHeadPosition.Equals(this.heart)) {
+            this.eat_audio.play();
             snake.push(tail);
+        }
         
         this.snake = snake;
     }
@@ -225,14 +250,16 @@ export default class Snake extends Component<any, any> {
         let snakeCrash = this.snake
             .filter((val, i , snake) => i !== 0)
             .some(val => val.Equals(this.snake[0]));
-        if (snakeCrash)
-            this.gameState = GameState.Lost;
 
         let snakeOffBoard = 
             this.snake[0].x < 1*this.boxSize || this.snake[0].x > (this.columns - 2)*this.boxSize ||
             this.snake[0].y < 3*this.boxSize || this.snake[0].y > (this.rows - 2)*this.boxSize;
-        if (snakeOffBoard)
+
+        if (snakeCrash || snakeOffBoard) {
+            if (this.gameState !== GameState.Lost)
+                this.dead_audio.play();
             this.gameState = GameState.Lost;
+        }
     }
 
 // ---------------- Game loop ----------------
@@ -254,12 +281,16 @@ export default class Snake extends Component<any, any> {
         
         if (this.gameState === GameState.Playing) {
             if (event.keyCode == 37) {
+                this.left_audio.play();
                 this.direction = Direction.Left;
             } else if (event.keyCode == 38) {
+                this.up_audio.play();
                 this.direction = Direction.Up;
             } else if (event.keyCode == 39) {
+                this.right_audio.play();
                 this.direction = Direction.Right;
             } else if (event.keyCode == 40) {
+                this.down_audio.play();
                 this.direction = Direction.Down;
             } else if (event.keyCode == 80) {
                 this.gameState = GameState.Paused;

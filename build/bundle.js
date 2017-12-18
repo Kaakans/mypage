@@ -1459,11 +1459,23 @@ var Snake = /** @class */function (_super) {
     __extends(Snake, _super);
     function Snake() {
         var _this = _super.call(this) || this;
+        _this.boxSize = 32;
         _this.columns = 23;
         _this.rows = 23;
         _this.direction = Direction.Left;
         _this.gameState = GameState.Playing;
-        _this.boxSize = 32;
+        _this.dead_audio = new Audio();
+        _this.dead_audio.src = "../src/audio/dead.mp3";
+        _this.eat_audio = new Audio();
+        _this.eat_audio.src = "../src/audio/eat.mp3";
+        _this.left_audio = new Audio();
+        _this.left_audio.src = "../src/audio/left.mp3";
+        _this.up_audio = new Audio();
+        _this.up_audio.src = "../src/audio/up.mp3";
+        _this.right_audio = new Audio();
+        _this.right_audio.src = "../src/audio/right.mp3";
+        _this.down_audio = new Audio();
+        _this.down_audio.src = "../src/audio/down.mp3";
         _this.heart_img = new Image();
         _this.heart_img.className = "heart";
         _this.heart_img.src = "../src/images/heart.png";
@@ -1516,7 +1528,10 @@ var Snake = /** @class */function (_super) {
         snakeY += this.direction === Direction.Down ? 1 * this.boxSize : 0;
         var newHeadPosition = new Coordinate(snakeX, snakeY);
         snake.unshift(newHeadPosition);
-        if (newHeadPosition.Equals(this.heart)) snake.push(tail);
+        if (newHeadPosition.Equals(this.heart)) {
+            this.eat_audio.play();
+            snake.push(tail);
+        }
         this.snake = snake;
     };
     Snake.prototype.updateHeart = function () {
@@ -1605,9 +1620,11 @@ var Snake = /** @class */function (_super) {
         }).some(function (val) {
             return val.Equals(_this.snake[0]);
         });
-        if (snakeCrash) this.gameState = GameState.Lost;
         var snakeOffBoard = this.snake[0].x < 1 * this.boxSize || this.snake[0].x > (this.columns - 2) * this.boxSize || this.snake[0].y < 3 * this.boxSize || this.snake[0].y > (this.rows - 2) * this.boxSize;
-        if (snakeOffBoard) this.gameState = GameState.Lost;
+        if (snakeCrash || snakeOffBoard) {
+            this.dead_audio.play();
+            this.gameState = GameState.Lost;
+        }
     };
     // ---------------- Game loop ----------------
     Snake.prototype.gameLoop = function () {
@@ -1627,12 +1644,16 @@ var Snake = /** @class */function (_super) {
     Snake.prototype.handleKeypress = function (event) {
         if (this.gameState === GameState.Playing) {
             if (event.keyCode == 37) {
+                this.left_audio.play();
                 this.direction = Direction.Left;
             } else if (event.keyCode == 38) {
+                this.up_audio.play();
                 this.direction = Direction.Up;
             } else if (event.keyCode == 39) {
+                this.right_audio.play();
                 this.direction = Direction.Right;
             } else if (event.keyCode == 40) {
+                this.down_audio.play();
                 this.direction = Direction.Down;
             } else if (event.keyCode == 80) {
                 this.gameState = GameState.Paused;
