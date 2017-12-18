@@ -77,83 +77,7 @@ export default class Snake extends Component<any, any> {
         this.snake = snake;
     }
 
-    private draw() {
-        if (!this.ctx) return;
-
-        if (this.gameState === GameState.Playing) {
-            this.drawGround();
-            this.drawHeart();
-            this.drawSnake();
-            this.drawScore();
-        }
-
-        if (this.gameState === GameState.Won)
-            this.drawWinScreen();
-            
-        if (this.gameState === GameState.Lost)
-            this.drawGameover();
-    }
-
-    private drawGround() {
-        this.ctx.fillStyle = "#232323";
-        this.ctx.fillRect(0, 0, this.boxSize*this.columns, this.boxSize*this.rows);
-
-        for (let x = 1; x < this.columns-1; x++) {
-            for (let y = 3; y < this.rows-1; y++) {
-                let xy = (x + y) % 2;
-                this.ctx.fillStyle = xy === 1 ? "black" : "white";
-                this.ctx.fillRect(x*this.boxSize, y*this.boxSize, this.boxSize, this.boxSize);
-            }
-        }
-    }
-
-    private drawHeart() {
-        this.ctx.drawImage(this.heart_img, this.heart.x, this.heart.y, this.boxSize, this.boxSize);
-    }
-
-    private drawSnake() {
-        for(let i = 0; i < this.snake.length; i++) {
-            this.ctx.fillStyle = i === 0 ? "purple" : "#eac67a";
-            // this.ctx.fillStyle = "#eac67a";
-            this.ctx.fillRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
-            
-            this.ctx.strokeStyle = "#eac67a";
-            this.ctx.strokeRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
-        }
-    }
-
-    private drawScore() {
-        this.ctx.drawImage(this.heart_img, 1*this.boxSize, 1*this.boxSize, this.boxSize, this.boxSize);
-
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "32px Oswald, monospace"
-        this.ctx.textAlign = "start";
-        this.ctx.fillText(`${ this.score }`, 2*this.boxSize, 1.9*this.boxSize);
-    }
-    
-    private drawWinScreen() {
-        this.drawEndScreen("You beat snake!");
-    }
-
-    private drawGameover() {
-        this.drawEndScreen("Game over");
-    }
-
-    private drawEndScreen(message: string) {
-        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-        this.ctx.fillRect(0, 0, this.columns*this.boxSize, this.rows*this.boxSize);
-
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "32px Oswald, monospace"
-        this.ctx.textAlign = "center";
-
-        let boardCenterX = this.columns/2 ;
-        let boardCenterY = this.rows/2;
-
-        this.ctx.fillText(message, boardCenterX * this.boxSize, boardCenterY * this.boxSize);
-        this.ctx.fillText(`Final score: ${ this.score }`, boardCenterX * this.boxSize, (1 + boardCenterY) * this.boxSize);
-        this.ctx.fillText("Press R to play again", boardCenterX * this.boxSize, (3 + boardCenterY) * this.boxSize);
-    }
+// ----------------- Update -----------------
 
     private update() {
         if (this.gameState != GameState.Playing) return;
@@ -189,6 +113,109 @@ export default class Snake extends Component<any, any> {
             this.generateHeart();
     }
 
+// ------------------ Draw ------------------
+
+    private draw() {
+        if (!this.ctx) return;
+
+        if (this.gameState === GameState.Playing) {
+            this.drawGround();
+            this.drawHeart();
+            this.drawSnake();
+            this.drawScore();
+        }
+
+        if (this.gameState === GameState.Won)
+            this.drawWinScreen();
+            
+        if (this.gameState === GameState.Lost)
+            this.drawGameover();
+
+        if (this.gameState === GameState.Paused)
+            this.drawPauseScreen();
+    }
+
+    private drawGround() {
+        this.ctx.fillStyle = "#232323";
+        this.ctx.fillRect(0, 0, this.boxSize*this.columns, this.boxSize*this.rows);
+
+        for (let x = 1; x < this.columns-1; x++) {
+            for (let y = 3; y < this.rows-1; y++) {
+                let xy = (x + y) % 2;
+                this.ctx.fillStyle = xy === 1 ? "black" : "white";
+                this.ctx.fillRect(x*this.boxSize, y*this.boxSize, this.boxSize, this.boxSize);
+            }
+        }
+    }
+
+    private drawHeart() {
+        this.ctx.drawImage(this.heart_img, this.heart.x, this.heart.y, this.boxSize, this.boxSize);
+    }
+
+    private drawSnake() {
+        if (this.snake.length === 2)
+            console.log(`Snake p1: (${ this.snake[0].x }, ${ this.snake[0].y }), p2: (${ this.snake[1].x }, ${ this.snake[1].y })`);
+
+        for(let i = 0; i < this.snake.length; i++) {
+            this.ctx.fillStyle = i === 0 ? "purple" : "#eac67a";
+            // this.ctx.fillStyle = "#eac67a";
+            this.ctx.fillRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
+            
+            this.ctx.strokeStyle = "#eac67a";
+            this.ctx.strokeRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
+        }
+    }
+
+    private drawScore() {
+        this.ctx.drawImage(this.heart_img, 1*this.boxSize, 1*this.boxSize, this.boxSize, this.boxSize);
+
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace"
+        this.ctx.textAlign = "start";
+        this.ctx.fillText(`${ this.score }`, 2*this.boxSize, 1.9*this.boxSize);
+    }
+    
+    private drawWinScreen() {
+        this.drawScreen("You beat snake!");
+    }
+
+    private drawGameover() {
+        this.drawScreen("Game over");
+    }
+    
+    private drawScreen(message: string) {
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        this.ctx.fillRect(0, 0, this.columns*this.boxSize, this.rows*this.boxSize);
+
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace"
+        this.ctx.textAlign = "center";
+
+        let boardCenterX = this.columns/2 ;
+        let boardCenterY = this.rows/2;
+
+        this.ctx.fillText(message, boardCenterX * this.boxSize, boardCenterY * this.boxSize);
+        this.ctx.fillText(`Final score: ${ this.score }`, boardCenterX * this.boxSize, (1 + boardCenterY) * this.boxSize);
+        this.ctx.fillText("Press R to play again", boardCenterX * this.boxSize, (3 + boardCenterY) * this.boxSize);
+    }
+
+    private drawPauseScreen() {
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        this.ctx.fillRect(0, 0, this.columns*this.boxSize, this.rows*this.boxSize);
+
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace"
+        this.ctx.textAlign = "center";
+
+        let boardCenterX = this.columns/2 ;
+        let boardCenterY = this.rows/2;
+
+        this.ctx.fillText("Paused", boardCenterX * this.boxSize, boardCenterY * this.boxSize);
+        this.ctx.fillText("Press C to continue", boardCenterX * this.boxSize, (2 + boardCenterY) * this.boxSize);
+    }
+
+// ---------------- Conditions ----------------
+
     private checkEndConditions() {
 
         let snakeMaxLength = this.columns * this.rows;
@@ -200,6 +227,27 @@ export default class Snake extends Component<any, any> {
             .some(val => val.Equals(this.snake[0]));
         if (snakeCrash)
             this.gameState = GameState.Lost;
+
+        let snakeOffBoard = 
+            this.snake[0].x < 1*this.boxSize || this.snake[0].x > (this.columns - 2)*this.boxSize ||
+            this.snake[0].y < 3*this.boxSize || this.snake[0].y > (this.rows - 2)*this.boxSize;
+        if (snakeOffBoard)
+            this.gameState = GameState.Lost;
+    }
+
+// ---------------- Game loop ----------------
+
+    private gameLoop() {
+        this.update();
+        this.checkEndConditions();
+        this.draw();
+    }
+
+    private runSnake() {
+        let self = this;
+
+        document.addEventListener("keydown", (event: KeyboardEvent) => { self.handleKeypress(event) })
+        let game = setInterval(() => { self.gameLoop() }, 100);
     }
 
     private handleKeypress(event: KeyboardEvent) {
@@ -213,6 +261,8 @@ export default class Snake extends Component<any, any> {
                 this.direction = Direction.Right;
             } else if (event.keyCode == 40) {
                 this.direction = Direction.Down;
+            } else if (event.keyCode == 80) {
+                this.gameState = GameState.Paused;
             }
         }
 
@@ -224,19 +274,12 @@ export default class Snake extends Component<any, any> {
                 this.gameState = GameState.Playing;
             }
         }
-    }
 
-    private runSnake() {
-        let self = this;
-
-        document.addEventListener("keydown", (event: KeyboardEvent) => { self.handleKeypress(event) })
-        let game = setInterval(() => { self.gameLoop() }, 100);
-    }
-
-    private gameLoop() {
-        this.update();
-        this.draw();
-        this.checkEndConditions();
+        if (this.gameState === GameState.Paused) {
+            if (event.keyCode == 67) {
+                this.gameState = GameState.Playing;
+            }
+        }
     }
 
     render() {

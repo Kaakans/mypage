@@ -1499,65 +1499,7 @@ var Snake = /** @class */function (_super) {
         snake[0] = new Coordinate(11 * this.boxSize, 11 * this.boxSize);
         this.snake = snake;
     };
-    Snake.prototype.draw = function () {
-        if (!this.ctx) return;
-        if (this.gameState === GameState.Playing) {
-            this.drawGround();
-            this.drawHeart();
-            this.drawSnake();
-            this.drawScore();
-        }
-        if (this.gameState === GameState.Won) this.drawWinScreen();
-        if (this.gameState === GameState.Lost) this.drawGameover();
-    };
-    Snake.prototype.drawGround = function () {
-        this.ctx.fillStyle = "#232323";
-        this.ctx.fillRect(0, 0, this.boxSize * this.columns, this.boxSize * this.rows);
-        for (var x = 1; x < this.columns - 1; x++) {
-            for (var y = 3; y < this.rows - 1; y++) {
-                var xy = (x + y) % 2;
-                this.ctx.fillStyle = xy === 1 ? "black" : "white";
-                this.ctx.fillRect(x * this.boxSize, y * this.boxSize, this.boxSize, this.boxSize);
-            }
-        }
-    };
-    Snake.prototype.drawHeart = function () {
-        this.ctx.drawImage(this.heart_img, this.heart.x, this.heart.y, this.boxSize, this.boxSize);
-    };
-    Snake.prototype.drawSnake = function () {
-        for (var i = 0; i < this.snake.length; i++) {
-            this.ctx.fillStyle = i === 0 ? "purple" : "#eac67a";
-            // this.ctx.fillStyle = "#eac67a";
-            this.ctx.fillRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
-            this.ctx.strokeStyle = "#eac67a";
-            this.ctx.strokeRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
-        }
-    };
-    Snake.prototype.drawScore = function () {
-        this.ctx.drawImage(this.heart_img, 1 * this.boxSize, 1 * this.boxSize, this.boxSize, this.boxSize);
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "32px Oswald, monospace";
-        this.ctx.textAlign = "start";
-        this.ctx.fillText("" + this.score, 2 * this.boxSize, 1.9 * this.boxSize);
-    };
-    Snake.prototype.drawWinScreen = function () {
-        this.drawEndScreen("You beat snake!");
-    };
-    Snake.prototype.drawGameover = function () {
-        this.drawEndScreen("Game over");
-    };
-    Snake.prototype.drawEndScreen = function (message) {
-        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
-        this.ctx.fillRect(0, 0, this.columns * this.boxSize, this.rows * this.boxSize);
-        this.ctx.fillStyle = "white";
-        this.ctx.font = "32px Oswald, monospace";
-        this.ctx.textAlign = "center";
-        var boardCenterX = this.columns / 2;
-        var boardCenterY = this.rows / 2;
-        this.ctx.fillText(message, boardCenterX * this.boxSize, boardCenterY * this.boxSize);
-        this.ctx.fillText("Final score: " + this.score, boardCenterX * this.boxSize, (1 + boardCenterY) * this.boxSize);
-        this.ctx.fillText("Press R to play again", boardCenterX * this.boxSize, (3 + boardCenterY) * this.boxSize);
-    };
+    // ----------------- Update -----------------
     Snake.prototype.update = function () {
         if (this.gameState != GameState.Playing) return;
         this.updateSnake();
@@ -1580,6 +1522,80 @@ var Snake = /** @class */function (_super) {
     Snake.prototype.updateHeart = function () {
         if (this.snake[0].Equals(this.heart)) this.generateHeart();
     };
+    // ------------------ Draw ------------------
+    Snake.prototype.draw = function () {
+        if (!this.ctx) return;
+        if (this.gameState === GameState.Playing) {
+            this.drawGround();
+            this.drawHeart();
+            this.drawSnake();
+            this.drawScore();
+        }
+        if (this.gameState === GameState.Won) this.drawWinScreen();
+        if (this.gameState === GameState.Lost) this.drawGameover();
+        if (this.gameState === GameState.Paused) this.drawPauseScreen();
+    };
+    Snake.prototype.drawGround = function () {
+        this.ctx.fillStyle = "#232323";
+        this.ctx.fillRect(0, 0, this.boxSize * this.columns, this.boxSize * this.rows);
+        for (var x = 1; x < this.columns - 1; x++) {
+            for (var y = 3; y < this.rows - 1; y++) {
+                var xy = (x + y) % 2;
+                this.ctx.fillStyle = xy === 1 ? "black" : "white";
+                this.ctx.fillRect(x * this.boxSize, y * this.boxSize, this.boxSize, this.boxSize);
+            }
+        }
+    };
+    Snake.prototype.drawHeart = function () {
+        this.ctx.drawImage(this.heart_img, this.heart.x, this.heart.y, this.boxSize, this.boxSize);
+    };
+    Snake.prototype.drawSnake = function () {
+        if (this.snake.length === 2) console.log("Snake p1: (" + this.snake[0].x + ", " + this.snake[0].y + "), p2: (" + this.snake[1].x + ", " + this.snake[1].y + ")");
+        for (var i = 0; i < this.snake.length; i++) {
+            this.ctx.fillStyle = i === 0 ? "purple" : "#eac67a";
+            // this.ctx.fillStyle = "#eac67a";
+            this.ctx.fillRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
+            this.ctx.strokeStyle = "#eac67a";
+            this.ctx.strokeRect(this.snake[i].x, this.snake[i].y, this.boxSize, this.boxSize);
+        }
+    };
+    Snake.prototype.drawScore = function () {
+        this.ctx.drawImage(this.heart_img, 1 * this.boxSize, 1 * this.boxSize, this.boxSize, this.boxSize);
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace";
+        this.ctx.textAlign = "start";
+        this.ctx.fillText("" + this.score, 2 * this.boxSize, 1.9 * this.boxSize);
+    };
+    Snake.prototype.drawWinScreen = function () {
+        this.drawScreen("You beat snake!");
+    };
+    Snake.prototype.drawGameover = function () {
+        this.drawScreen("Game over");
+    };
+    Snake.prototype.drawScreen = function (message) {
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        this.ctx.fillRect(0, 0, this.columns * this.boxSize, this.rows * this.boxSize);
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace";
+        this.ctx.textAlign = "center";
+        var boardCenterX = this.columns / 2;
+        var boardCenterY = this.rows / 2;
+        this.ctx.fillText(message, boardCenterX * this.boxSize, boardCenterY * this.boxSize);
+        this.ctx.fillText("Final score: " + this.score, boardCenterX * this.boxSize, (1 + boardCenterY) * this.boxSize);
+        this.ctx.fillText("Press R to play again", boardCenterX * this.boxSize, (3 + boardCenterY) * this.boxSize);
+    };
+    Snake.prototype.drawPauseScreen = function () {
+        this.ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        this.ctx.fillRect(0, 0, this.columns * this.boxSize, this.rows * this.boxSize);
+        this.ctx.fillStyle = "white";
+        this.ctx.font = "32px Oswald, monospace";
+        this.ctx.textAlign = "center";
+        var boardCenterX = this.columns / 2;
+        var boardCenterY = this.rows / 2;
+        this.ctx.fillText("Paused", boardCenterX * this.boxSize, boardCenterY * this.boxSize);
+        this.ctx.fillText("Press C to continue", boardCenterX * this.boxSize, (2 + boardCenterY) * this.boxSize);
+    };
+    // ---------------- Conditions ----------------
     Snake.prototype.checkEndConditions = function () {
         var _this = this;
         var snakeMaxLength = this.columns * this.rows;
@@ -1590,6 +1606,23 @@ var Snake = /** @class */function (_super) {
             return val.Equals(_this.snake[0]);
         });
         if (snakeCrash) this.gameState = GameState.Lost;
+        var snakeOffBoard = this.snake[0].x < 1 * this.boxSize || this.snake[0].x > (this.columns - 2) * this.boxSize || this.snake[0].y < 3 * this.boxSize || this.snake[0].y > (this.rows - 2) * this.boxSize;
+        if (snakeOffBoard) this.gameState = GameState.Lost;
+    };
+    // ---------------- Game loop ----------------
+    Snake.prototype.gameLoop = function () {
+        this.update();
+        this.checkEndConditions();
+        this.draw();
+    };
+    Snake.prototype.runSnake = function () {
+        var self = this;
+        document.addEventListener("keydown", function (event) {
+            self.handleKeypress(event);
+        });
+        var game = setInterval(function () {
+            self.gameLoop();
+        }, 100);
     };
     Snake.prototype.handleKeypress = function (event) {
         if (this.gameState === GameState.Playing) {
@@ -1601,29 +1634,23 @@ var Snake = /** @class */function (_super) {
                 this.direction = Direction.Right;
             } else if (event.keyCode == 40) {
                 this.direction = Direction.Down;
+            } else if (event.keyCode == 80) {
+                this.gameState = GameState.Paused;
             }
         }
         if (this.gameState === GameState.Lost || this.gameState === GameState.Won) {
             if (event.keyCode == 82) {
                 this.initiateSnake();
                 this.generateHeart();
+                this.direction = Direction.Left;
                 this.gameState = GameState.Playing;
             }
         }
-    };
-    Snake.prototype.runSnake = function () {
-        var self = this;
-        document.addEventListener("keydown", function (event) {
-            self.handleKeypress(event);
-        });
-        var game = setInterval(function () {
-            self.gameLoop();
-        }, 100);
-    };
-    Snake.prototype.gameLoop = function () {
-        this.update();
-        this.draw();
-        this.checkEndConditions();
+        if (this.gameState === GameState.Paused) {
+            if (event.keyCode == 67) {
+                this.gameState = GameState.Playing;
+            }
+        }
     };
     Snake.prototype.render = function () {
         var _this = this;
