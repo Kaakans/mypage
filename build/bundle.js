@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1069,344 +1069,17 @@ var View;
 "use strict";
 
 
-var _preact = __webpack_require__(0);
-
-__webpack_require__(3);
-
-// this holds our rendered root element so we can re-render in response to HMR updates.
-// This is the entry file, which kicks off all rendering.
-//
-// We import h() here because that's the function our JSX elements transpile to.
-// That is to say - this:
-//     <div a="b">foo</div>
-// ... is converted to this:
-//     h('div', { a: 'b' }, 'foo')
-
-var root = void 0;
-
-// Making our app's initialization a function means it's repeatable.
-function init() {
-	// HMR requires that this be a require()
-	var App = __webpack_require__(4).default;
-
-	// render the app and save the new root element:
-	root = (0, _preact.render)((0, _preact.h)(App, null), document.body, root);
-}
-
-// initial render!
-init();
-
-// If this is webpack-dev-server, set up HMR :)
-if (false) module.hot.accept('./components/app', init);
+Object.defineProperty(exports, "__esModule", { value: true });
+var ViewExample;
+(function (ViewExample) {
+    ViewExample[ViewExample["Snake"] = 0] = "Snake";
+    ViewExample[ViewExample["Example"] = 1] = "Example";
+    ViewExample[ViewExample["None"] = 2] = "None";
+})(ViewExample = exports.ViewExample || (exports.ViewExample = {}));
+;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var header_1 = __webpack_require__(5);
-var content_1 = __webpack_require__(6);
-var examples_1 = __webpack_require__(7);
-var reviews_1 = __webpack_require__(9);
-var footer_1 = __webpack_require__(10);
-var snake_1 = __webpack_require__(11);
-var view_1 = __webpack_require__(1);
-var App = /** @class */function (_super) {
-    __extends(App, _super);
-    function App() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.renderCallback = function (view) {
-            _this.setState({ currentView: view });
-        };
-        _this.renderStart = function () {
-            return preact_1.h(content_1.default, null);
-        };
-        _this.renderExamples = function () {
-            return preact_1.h(examples_1.default, null);
-        };
-        _this.renderReviews = function () {
-            return preact_1.h(reviews_1.default, null);
-        };
-        _this.renderSnake = function () {
-            return preact_1.h(snake_1.default, null);
-        };
-        _this.renderContent = function () {
-            var html = _this.renderStart();
-            if (_this.state.currentView === view_1.View.Examples) html = _this.renderExamples();
-            if (_this.state.currentView === view_1.View.Reviews) html = _this.renderReviews();
-            if (_this.state.currentView === view_1.View.Snake) html = _this.renderSnake();
-            return preact_1.h("div", { className: "content-container" }, html);
-        };
-        return _this;
-    }
-    App.prototype.render = function () {
-        return preact_1.h("div", null, preact_1.h(header_1.default, { renderCallback: this.renderCallback }), this.renderContent(), preact_1.h(footer_1.default, null));
-    };
-    return App;
-}(preact_1.Component);
-exports.default = App;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var view_1 = __webpack_require__(1);
-var Header = /** @class */function (_super) {
-    __extends(Header, _super);
-    function Header() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Header.prototype.render = function () {
-        var _this = this;
-        return preact_1.h("header", { className: "top-header" }, preact_1.h("nav", { className: "wrapper" }, preact_1.h("div", { className: "logo" }), preact_1.h("input", { type: "checkbox", id: "menu-toggle" }), preact_1.h("label", { for: "menu-toggle", class: "label-toggle" }), preact_1.h("ul", { id: "nav-menu" }, preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
-                return _this.props.renderCallback(view_1.View.Start);
-            } }, "Me")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
-                return _this.props.renderCallback(view_1.View.Snake);
-            } }, "Snake!")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
-                return _this.props.renderCallback(view_1.View.Examples);
-            } }, "Stuff I did")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
-                return _this.props.renderCallback(view_1.View.Reviews);
-            } }, "Reviews")))));
-    };
-    return Header;
-}(preact_1.Component);
-exports.default = Header;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var Content = /** @class */function (_super) {
-    __extends(Content, _super);
-    function Content() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Content.prototype.render = function () {
-        return preact_1.h("h1", null, "MEE");
-    };
-    return Content;
-}(preact_1.Component);
-exports.default = Content;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var example_1 = __webpack_require__(8);
-var Examples = /** @class */function (_super) {
-    __extends(Examples, _super);
-    function Examples() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Examples.prototype.render = function () {
-        return preact_1.h("div", { className: "examples" }, preact_1.h("div", { className: "example-row" }, preact_1.h(example_1.default, null), preact_1.h(example_1.default, null)), preact_1.h("div", { className: "example-row" }, preact_1.h(example_1.default, null), preact_1.h(example_1.default, null)));
-    };
-    return Examples;
-}(preact_1.Component);
-exports.default = Examples;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var Example = /** @class */function (_super) {
-    __extends(Example, _super);
-    function Example() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Example.prototype.render = function () {
-        return preact_1.h("div", { className: "example" }, preact_1.h("div", { className: "box" }, preact_1.h("img", null), preact_1.h("div", { className: "info" }, preact_1.h("div", { className: "title" }, "Example"), preact_1.h("a", { href: "example.com" }, "example.com"), preact_1.h("div", { className: "text" }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit."))));
-    };
-    return Example;
-}(preact_1.Component);
-exports.default = Example;
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var Reviews = /** @class */function (_super) {
-    __extends(Reviews, _super);
-    function Reviews() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Reviews.prototype.render = function () {
-        return preact_1.h("div", { className: "reviews" }, preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-half-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-half-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-half-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))));
-    };
-    return Reviews;
-}(preact_1.Component);
-exports.default = Reviews;
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var __extends = undefined && undefined.__extends || function () {
-    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
-        d.__proto__ = b;
-    } || function (d, b) {
-        for (var p in b) {
-            if (b.hasOwnProperty(p)) d[p] = b[p];
-        }
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() {
-            this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-}();
-Object.defineProperty(exports, "__esModule", { value: true });
-var preact_1 = __webpack_require__(0);
-var Footer = /** @class */function (_super) {
-    __extends(Footer, _super);
-    function Footer() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Footer.prototype.render = function () {
-        return preact_1.h("footer", null, preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-facebook-official" }), preact_1.h("a", { href: "http://facebook.com/kakanss" }, "Jonathan Boellke")), preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-phone" }), preact_1.h("span", null, "070 - 555 72 75")), preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-envelope" }), preact_1.h("span", null, "jonathanboellke@gmail.com")));
-    };
-    return Footer;
-}(preact_1.Component);
-exports.default = Footer;
-
-/***/ }),
-/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1622,7 +1295,7 @@ var Snake = /** @class */function (_super) {
         });
         var snakeOffBoard = this.snake[0].x < 1 * this.boxSize || this.snake[0].x > (this.columns - 2) * this.boxSize || this.snake[0].y < 3 * this.boxSize || this.snake[0].y > (this.rows - 2) * this.boxSize;
         if (snakeCrash || snakeOffBoard) {
-            this.dead_audio.play();
+            if (this.gameState !== GameState.Lost) this.dead_audio.play();
             this.gameState = GameState.Lost;
         }
     };
@@ -1685,6 +1358,398 @@ var Snake = /** @class */function (_super) {
     return Snake;
 }(preact_1.Component);
 exports.default = Snake;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _preact = __webpack_require__(0);
+
+__webpack_require__(5);
+
+// this holds our rendered root element so we can re-render in response to HMR updates.
+// This is the entry file, which kicks off all rendering.
+//
+// We import h() here because that's the function our JSX elements transpile to.
+// That is to say - this:
+//     <div a="b">foo</div>
+// ... is converted to this:
+//     h('div', { a: 'b' }, 'foo')
+
+var root = void 0;
+
+// Making our app's initialization a function means it's repeatable.
+function init() {
+	// HMR requires that this be a require()
+	var App = __webpack_require__(6).default;
+
+	// render the app and save the new root element:
+	root = (0, _preact.render)((0, _preact.h)(App, null), document.body, root);
+}
+
+// initial render!
+init();
+
+// If this is webpack-dev-server, set up HMR :)
+if (false) module.hot.accept('./components/app', init);
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var header_1 = __webpack_require__(7);
+var content_1 = __webpack_require__(8);
+var examples_1 = __webpack_require__(9);
+var reviews_1 = __webpack_require__(12);
+var footer_1 = __webpack_require__(13);
+var snake_1 = __webpack_require__(3);
+var view_1 = __webpack_require__(1);
+var App = /** @class */function (_super) {
+    __extends(App, _super);
+    function App() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.renderCallback = function (view) {
+            _this.setState({ currentView: view });
+        };
+        _this.renderStart = function () {
+            return preact_1.h(content_1.default, null);
+        };
+        _this.renderExamples = function () {
+            return preact_1.h(examples_1.default, null);
+        };
+        _this.renderReviews = function () {
+            return preact_1.h(reviews_1.default, null);
+        };
+        _this.renderSnake = function () {
+            return preact_1.h(snake_1.default, null);
+        };
+        _this.renderContent = function () {
+            var html = _this.renderStart();
+            if (_this.state.currentView === view_1.View.Examples) html = _this.renderExamples();
+            if (_this.state.currentView === view_1.View.Reviews) html = _this.renderReviews();
+            if (_this.state.currentView === view_1.View.Snake) html = _this.renderSnake();
+            return preact_1.h("div", { className: "content-container" }, html);
+        };
+        return _this;
+    }
+    App.prototype.render = function () {
+        return preact_1.h("div", null, preact_1.h(header_1.default, { renderCallback: this.renderCallback }), this.renderContent(), preact_1.h(footer_1.default, null));
+    };
+    return App;
+}(preact_1.Component);
+exports.default = App;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var view_1 = __webpack_require__(1);
+var Header = /** @class */function (_super) {
+    __extends(Header, _super);
+    function Header() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Header.prototype.render = function () {
+        var _this = this;
+        return preact_1.h("header", { className: "top-header" }, preact_1.h("nav", { className: "wrapper" }, preact_1.h("div", { className: "logo" }), preact_1.h("input", { type: "checkbox", id: "menu-toggle" }), preact_1.h("label", { for: "menu-toggle", class: "label-toggle" }), preact_1.h("ul", { id: "nav-menu" }, preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Start);
+            } }, "Me")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Examples);
+            } }, "Stuff I did")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Reviews);
+            } }, "Reviews")))));
+    };
+    return Header;
+}(preact_1.Component);
+exports.default = Header;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Content = /** @class */function (_super) {
+    __extends(Content, _super);
+    function Content() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Content.prototype.render = function () {
+        return preact_1.h("h1", null, "MEE");
+    };
+    return Content;
+}(preact_1.Component);
+exports.default = Content;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var example_1 = __webpack_require__(10);
+var snakeExample_1 = __webpack_require__(11);
+var snake_1 = __webpack_require__(3);
+var viewExample_1 = __webpack_require__(2);
+var Examples = /** @class */function (_super) {
+    __extends(Examples, _super);
+    function Examples() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Examples.prototype.toggleShowExample = function (displayView) {
+        this.setState({ displayView: displayView });
+    };
+    Examples.prototype.render = function () {
+        return preact_1.h("div", { className: "examples" }, this.renderExampleView(), preact_1.h("div", { className: "example-row" }, preact_1.h(snakeExample_1.default, { displayExampleCallback: this.toggleShowExample }), preact_1.h(example_1.default, null)), preact_1.h("div", { className: "example-row" }, preact_1.h(example_1.default, null), preact_1.h(example_1.default, null)));
+    };
+    Examples.prototype.renderExampleView = function () {
+        if (this.state.displayView === viewExample_1.ViewExample.Snake) return preact_1.h("div", { className: "display-example" }, preact_1.h(snake_1.default, null));
+    };
+    return Examples;
+}(preact_1.Component);
+exports.default = Examples;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Example = /** @class */function (_super) {
+    __extends(Example, _super);
+    function Example() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Example.prototype.render = function () {
+        return preact_1.h("div", { className: "example" }, preact_1.h("div", { className: "box" }, preact_1.h("img", null), preact_1.h("div", { className: "info" }, preact_1.h("div", { className: "title" }, "Example"), preact_1.h("a", { href: "example.com" }, "example.com"), preact_1.h("div", { className: "text" }, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit."))));
+    };
+    return Example;
+}(preact_1.Component);
+exports.default = Example;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var viewExample_1 = __webpack_require__(2);
+var SnakeExample = /** @class */function (_super) {
+    __extends(SnakeExample, _super);
+    function SnakeExample() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    SnakeExample.prototype.callback = function () {
+        this.props.displayExampleCallback(viewExample_1.ViewExample.Snake);
+    };
+    SnakeExample.prototype.render = function () {
+        var self = this;
+        return preact_1.h("div", { className: "example" }, preact_1.h("div", { className: "box" }, preact_1.h("img", { className: "snake" }), preact_1.h("div", { className: "info" }, preact_1.h("div", { className: "title" }, "Snake"), preact_1.h("button", { onClick: self.callback }, "Try it!"), preact_1.h("div", { className: "text" }, "Classic snake game built with html5 canvas and Typescript."))));
+    };
+    return SnakeExample;
+}(preact_1.Component);
+exports.default = SnakeExample;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Reviews = /** @class */function (_super) {
+    __extends(Reviews, _super);
+    function Reviews() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Reviews.prototype.render = function () {
+        return preact_1.h("div", { className: "reviews" }, preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-half-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-half-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-half-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))), preact_1.h("div", { className: "review-container" }, preact_1.h("div", { className: "review-image" }, preact_1.h("img", null)), preact_1.h("div", { className: "review-content" }, preact_1.h("h1", null, "Review title"), preact_1.h("p", null, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus enim leo, lobortis quis pretium in, viverra ut nibh. Cras sollicitudin arcu dignissim dui dapibus, vel dapibus arcu mattis. Nunc dapibus lacinia purus, non scelerisque odio congue ac. Etiam cursus tempus fringilla. Maecenas et purus nibh. Duis orci augue, ullamcorper sed nulla ac, ultricies tincidunt massa. Praesent erat nibh, euismod et vehicula non, eleifend at elit. Vivamus aliquet tortor at condimentum vulputate. Aliquam lobortis a dolor nec porta. Proin in ipsum in leo euismod ultrices ut scelerisque leo. Donec rutrum feugiat orci, id vestibulum est pellentesque ac. In commodo vehicula eleifend. Phasellus quam sem, semper at auctor nec, volutpat et dolor.")), preact_1.h("div", { className: "review-score" }, preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }), preact_1.h("i", { class: "fa fa-star-o", "aria-hidden": "true" }))));
+    };
+    return Reviews;
+}(preact_1.Component);
+exports.default = Reviews;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Footer = /** @class */function (_super) {
+    __extends(Footer, _super);
+    function Footer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Footer.prototype.render = function () {
+        return preact_1.h("footer", null, preact_1.h("div", { className: "label" }, preact_1.h("div", null, preact_1.h("a", { href: "https://facebook.com/kakanss" }, preact_1.h("i", { className: "fa fa-facebook-official" }), "Jonathan Boellke")), preact_1.h("div", null, preact_1.h("a", { href: "https://github.com/kaakans" }, preact_1.h("i", { className: "fa fa-github" }), "Github")), preact_1.h("div", null, preact_1.h("i", { className: "fa fa-phone" }), preact_1.h("span", null, "070 - 555 72 75")), preact_1.h("div", null, preact_1.h("i", { className: "fa fa-envelope" }), preact_1.h("span", null, "jonathanboellke@gmail.com"))));
+    };
+    return Footer;
+}(preact_1.Component);
+exports.default = Footer;
 
 /***/ })
 /******/ ]);

@@ -34,7 +34,7 @@ export default class App extends Component<any, IComponentState> {
     }
 
     private renderContent = () => {
-        var html = this.renderStart();
+        let html = this.renderStart();
 
         if (this.state.currentView === View.Examples)
             html = this.renderExamples();

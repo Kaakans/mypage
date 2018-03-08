@@ -1,0 +1,1 @@
+export enum ViewExample { Snake, Example, None };

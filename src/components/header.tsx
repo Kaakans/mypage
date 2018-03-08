@@ -14,7 +14,7 @@ export default class Header extends Component<IHeaderProps, any> {
                 <label for="menu-toggle" class="label-toggle"></label>
                 <ul id="nav-menu">
                     <li><a href="#" onClick={() => this.props.renderCallback(View.Start)}>Me</a></li>
-                    <li><a href="#" onClick={() => this.props.renderCallback(View.Snake)}>Snake!</a></li>
+                    {/* <li><a href="#" onClick={() => this.props.renderCallback(View.Snake)}>Snake!</a></li> */}
                     <li><a href="#" onClick={() => this.props.renderCallback(View.Examples)}>Stuff I did</a></li>
                     <li><a href="#" onClick={() => this.props.renderCallback(View.Reviews)}>Reviews</a></li>
                 </ul>

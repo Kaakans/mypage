@@ -241,6 +241,7 @@ header.top-header nav .label-toggle {
   align-items: center;
 }
 .examples .example-row .example {
+  width: 90%;
   padding: 10px 20px;
 }
 .examples .example-row .example .box {
@@ -248,17 +249,22 @@ header.top-header nav .label-toggle {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  background-color: #232323;
 }
 .examples .example-row .example .box img {
   content: url(b915c1c45e773965020b4b273759936f.jpg);
-  width: 100%;
+  max-width: 100%;
   height: auto;
   max-height: 400px;
   align-self: center;
 }
+.examples .example-row .example .box img.snake {
+  content: url(9175c396f3554b1f641b63c0762ec0de.png);
+}
 .examples .example-row .example .box .info {
   background-color: #232323;
   padding: 20px;
+  padding-top: 0;
 }
 .examples .example-row .example .box .info .title {
   margin-top: 10px;
@@ -268,8 +274,23 @@ header.top-header nav .label-toggle {
   color: #ffffff;
   font-weight: bold;
 }
+.examples .example-row .example .box .info button {
+  color: #ffffff;
+  font-weight: bold;
+}
 .examples .example-row .example .box .info .text {
   margin-top: 10px;
+}
+.examples .display-example {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: white;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 @media only screen and (min-width: 961px) {
   .examples {
@@ -282,8 +303,7 @@ header.top-header nav .label-toggle {
     justify-content: space-around;
   }
   .examples .example-row .example {
-    max-width: 700px;
-    flex-grow: 1;
+    width: 700px;
   }
 }
 .game-container .snake-container {
@@ -336,23 +356,20 @@ body .content-container:first-child {
 body footer {
   padding: 10px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 body footer .label {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 body footer .label a {
   color: #ffffff;
 }
 body footer .label i {
-  padding-right: 5px;
-}
-body footer .label span {
-  padding-left: 5px;
+  padding-right: 10px;
 }
 body footer h1 {
   color: #ffffff;

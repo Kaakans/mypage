@@ -13,6 +13,7 @@
         align-items: center;
 
         .example {
+            width: 90%;
             padding: 10px 20px;
 
             .box {
@@ -20,20 +21,26 @@
                 flex-direction: column;
                 justify-content: flex-start;
                 align-items: flex-start;
+                background-color: @background-highlight;
 
                 img {
                     content: url("../src/images/zelda_light.jpg");
 
-                    width: 100%;
+                    max-width: 100%;
                     height: auto;
                     max-height: 400px;
 
                     align-self: center;
+
+                    &.snake {
+                        content: url("../src/images/snake.png");
+                    }
                 }
 
                 .info {
                     background-color: @background-highlight;
                     padding: 20px;
+                    padding-top: 0;
                     
                     .title {
                         margin-top: 10px;
@@ -44,6 +51,11 @@
                         color: @primary;
                         font-weight: bold;
                     }
+
+                    button {
+                        color: @primary;
+                        font-weight: bold;
+                    }
         
                     .text {
                         margin-top: 10px;
@@ -51,6 +63,20 @@
                 }
             }
         }
+    }
+
+    .display-example {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+
+        background-color: white;
+        z-index: 2;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -65,8 +91,7 @@
             justify-content: space-around;
 
             .example {
-                max-width: 700px;
-                flex-grow: 1;
+                width: 700px;
             }
         }
     }
