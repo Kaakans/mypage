@@ -5,6 +5,7 @@ import Examples from './examples';
 import Reviews from './reviews';
 import Footer from './footer';
 import Snake from './snake';
+import Dev from './dev-blogg';
 import { View } from './enums/view';
 
 export interface IComponentState {
@@ -33,6 +34,10 @@ export default class App extends Component<any, IComponentState> {
         return <Snake />;
     }
 
+    private renderDev = () => {
+        return <Dev />;
+    }
+
     private renderContent = () => {
         var html = this.renderStart();
 
@@ -43,7 +48,10 @@ export default class App extends Component<any, IComponentState> {
             html = this.renderReviews();
 
         if (this.state.currentView === View.Snake)
-            html = this.renderSnake(); 
+            html = this.renderSnake();
+
+        if (this.state.currentView === View.Dev)
+            html = this.renderDev(); 
 
         return <div className="content-container">{html}</div>;
     }

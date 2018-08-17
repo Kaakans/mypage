@@ -312,6 +312,25 @@ header.top-header nav .label-toggle {
     display: initial;
   }
 }
+.dev-blogg .post {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dev-blogg .post .summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 h1 {
   color: #ffffff;
 }
@@ -334,6 +353,7 @@ body .content-container:first-child {
   width: 100%;
 }
 body footer {
+  bottom: 0;
   padding: 10px;
   display: flex;
   flex-direction: column;

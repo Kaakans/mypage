@@ -1059,6 +1059,7 @@ var View;
     View[View["Examples"] = 1] = "Examples";
     View[View["Reviews"] = 2] = "Reviews";
     View[View["Snake"] = 3] = "Snake";
+    View[View["Dev"] = 4] = "Dev";
 })(View = exports.View || (exports.View = {}));
 ;
 
@@ -1136,6 +1137,7 @@ var examples_1 = __webpack_require__(7);
 var reviews_1 = __webpack_require__(9);
 var footer_1 = __webpack_require__(10);
 var snake_1 = __webpack_require__(11);
+var dev_blogg_1 = __webpack_require__(12);
 var view_1 = __webpack_require__(1);
 var App = /** @class */function (_super) {
     __extends(App, _super);
@@ -1156,11 +1158,15 @@ var App = /** @class */function (_super) {
         _this.renderSnake = function () {
             return preact_1.h(snake_1.default, null);
         };
+        _this.renderDev = function () {
+            return preact_1.h(dev_blogg_1.default, null);
+        };
         _this.renderContent = function () {
             var html = _this.renderStart();
             if (_this.state.currentView === view_1.View.Examples) html = _this.renderExamples();
             if (_this.state.currentView === view_1.View.Reviews) html = _this.renderReviews();
             if (_this.state.currentView === view_1.View.Snake) html = _this.renderSnake();
+            if (_this.state.currentView === view_1.View.Dev) html = _this.renderDev();
             return preact_1.h("div", { className: "content-container" }, html);
         };
         return _this;
@@ -1212,6 +1218,8 @@ var Header = /** @class */function (_super) {
             } }, "Snake!")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
                 return _this.props.renderCallback(view_1.View.Examples);
             } }, "Stuff I did")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
+                return _this.props.renderCallback(view_1.View.Dev);
+            } }, "Dev")), preact_1.h("li", null, preact_1.h("a", { href: "#", onClick: function onClick() {
                 return _this.props.renderCallback(view_1.View.Reviews);
             } }, "Reviews")))));
     };
@@ -1399,7 +1407,7 @@ var Footer = /** @class */function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     Footer.prototype.render = function () {
-        return preact_1.h("footer", null, preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-facebook-official" }), preact_1.h("a", { href: "http://facebook.com/kakanss" }, "Jonathan Boellke")), preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-phone" }), preact_1.h("span", null, "070 - 555 72 75")), preact_1.h("div", { className: "label" }, preact_1.h("i", { className: "fa fa-envelope" }), preact_1.h("span", null, "jonathanboellke@gmail.com")));
+        return preact_1.h("footer", null, preact_1.h("div", { className: "label" }, preact_1.h("span", null, preact_1.h("i", { className: "fa fa-envelope" }), "jonathanboellke@gmail.com")));
     };
     return Footer;
 }(preact_1.Component);
@@ -1622,7 +1630,7 @@ var Snake = /** @class */function (_super) {
         });
         var snakeOffBoard = this.snake[0].x < 1 * this.boxSize || this.snake[0].x > (this.columns - 2) * this.boxSize || this.snake[0].y < 3 * this.boxSize || this.snake[0].y > (this.rows - 2) * this.boxSize;
         if (snakeCrash || snakeOffBoard) {
-            this.dead_audio.play();
+            if (this.gameState !== GameState.Lost) this.dead_audio.play();
             this.gameState = GameState.Lost;
         }
     };
@@ -1685,6 +1693,109 @@ var Snake = /** @class */function (_super) {
     return Snake;
 }(preact_1.Component);
 exports.default = Snake;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var blogg_post_1 = __webpack_require__(13);
+var blogg_post_summary_1 = __webpack_require__(14);
+var Dev = /** @class */function (_super) {
+    __extends(Dev, _super);
+    function Dev() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.posts = [new blogg_post_1.default("Test Title 1", ["This here is a little test post of sorts.", "This is paragraph two of this test post."], "../src/images/heart.png"), new blogg_post_1.default("Test Title 2", ["This here is a little test post of sorts.", "This is paragraph two of this test post."], "../src/images/heart.png")];
+        return _this;
+    }
+    Dev.prototype.render = function () {
+        return preact_1.h("div", { class: "dev-blogg" }, this.posts.map(function (post) {
+            return preact_1.h(blogg_post_summary_1.default, { post: post });
+        }));
+    };
+    return Dev;
+}(preact_1.Component);
+exports.default = Dev;
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var BloggPost = /** @class */function () {
+    function BloggPost(title, paragraphs, thumbNail) {
+        this.title = title;
+        this.paragraphs = paragraphs;
+        this.thumbNail = thumbNail;
+    }
+    return BloggPost;
+}();
+exports.default = BloggPost;
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var PostSummary = /** @class */function (_super) {
+    __extends(PostSummary, _super);
+    function PostSummary() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PostSummary.prototype.renderParagraphSummary = function (paragraphs) {
+        if (!paragraphs.length) return;
+        var part = paragraphs[0].slice(0, 300);
+        return preact_1.h("p", null, " ", part.length > 300 ? part + ".." : part, " ");
+    };
+    PostSummary.prototype.render = function () {
+        return preact_1.h("div", { class: "post" }, preact_1.h("img", { src: this.props.post.thumbNail }), preact_1.h("div", { class: "summary" }, preact_1.h("h3", null, this.props.post.title), this.renderParagraphSummary(this.props.post.paragraphs)));
+    };
+    return PostSummary;
+}(preact_1.Component);
+exports.default = PostSummary;
 
 /***/ })
 /******/ ]);
