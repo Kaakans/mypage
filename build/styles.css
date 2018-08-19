@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald:400,700);header.top-header {
-  position: fixed;
   min-width: 100%;
   z-index: 10;
 }
@@ -324,6 +323,69 @@ header.top-header nav .label-toggle {
   justify-content: flex-start;
   align-items: center;
 }
+.banner {
+  width: 100vw;
+  height: 100vh;
+  background-color: #9dcdf7;
+  pointer-events: none;
+}
+.banner .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.banner .grid {
+  width: 100%;
+  height: 100%;
+  background-color: greenyellow;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  justify-content: stretch;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
+  pointer-events: auto;
+}
+.banner .grid .item {
+  background-color: #01a4fa;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all .5s ease;
+}
+.banner .grid .item:hover {
+  background-color: #0f83d6;
+  z-index: 10;
+}
+.banner .grid .item:hover .center {
+  z-index: 10;
+}
+.banner .grid .item:hover .center:hover {
+  z-index: 20;
+}
+.banner .grid .item .center {
+  width: 35%;
+  height: 35%;
+  background-color: #4bc0fc;
+  z-index: 1;
+  transition: all .5s ease;
+}
+.banner .grid .item .center:hover {
+  background-color: #7fd1fe;
+  z-index: 10;
+}
+.banner .grid .item-long {
+  grid-column: span 2;
+}
 *,
 *::before,
 *::after {
@@ -335,6 +397,8 @@ h1 {
   color: #ffffff;
 }
 body {
+  width: 100vw;
+  min-height: 100vh;
   margin: 0;
   font-family: 'Oswald', Arial, Helvetica, sans-serif;
   color: #ffffff;
@@ -342,12 +406,14 @@ body {
   flex-direction: column;
   background-color: #171717;
   transition: all .5s ease;
+  overflow-x: hidden;
 }
 body h1:first-child {
   margin-top: 0;
 }
 body .content-container {
-  padding-top: 97px;
+  height: calc(100vh - 2em - 89px);
+  padding-top: 20px;
 }
 body .content-container:first-child {
   width: 100%;

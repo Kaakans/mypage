@@ -1138,6 +1138,7 @@ var reviews_1 = __webpack_require__(9);
 var footer_1 = __webpack_require__(10);
 var snake_1 = __webpack_require__(11);
 var dev_blogg_1 = __webpack_require__(12);
+var banner_1 = __webpack_require__(15);
 var view_1 = __webpack_require__(1);
 var App = /** @class */function (_super) {
     __extends(App, _super);
@@ -1172,7 +1173,7 @@ var App = /** @class */function (_super) {
         return _this;
     }
     App.prototype.render = function () {
-        return preact_1.h("div", null, preact_1.h(header_1.default, { renderCallback: this.renderCallback }), this.renderContent(), preact_1.h(footer_1.default, null));
+        return preact_1.h("div", null, preact_1.h(banner_1.default, null), preact_1.h(header_1.default, { renderCallback: this.renderCallback }), this.renderContent(), preact_1.h(footer_1.default, null));
     };
     return App;
 }(preact_1.Component);
@@ -1796,6 +1797,49 @@ var PostSummary = /** @class */function (_super) {
     return PostSummary;
 }(preact_1.Component);
 exports.default = PostSummary;
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+var preact_1 = __webpack_require__(0);
+var Banner = /** @class */function (_super) {
+    __extends(Banner, _super);
+    function Banner() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Banner.prototype.render = function () {
+        return preact_1.h("div", { class: "banner" }, this.renderTextOverlay(), this.renderGrid());
+    };
+    Banner.prototype.renderTextOverlay = function () {
+        return preact_1.h("div", { class: "overlay" }, preact_1.h("h3", null, "Jonathan Boellke"), preact_1.h("h4", null, "Software developer"));
+    };
+    Banner.prototype.renderGrid = function () {
+        return preact_1.h("div", { class: "grid" }, preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item item-long" }, "Jonathan Boellke"), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })), preact_1.h("div", { class: "item" }, preact_1.h("div", { class: "center" })));
+    };
+    return Banner;
+}(preact_1.Component);
+exports.default = Banner;
 
 /***/ })
 /******/ ]);

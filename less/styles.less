@@ -6,6 +6,7 @@
 @import 'examples';
 @import 'snake';
 @import 'dev';
+@import 'banner';
 
 *, *::before, *::after {
     -webkit-box-sizing: border-box;
@@ -18,21 +19,27 @@ h1 {
 }
 
 body {
+    width: 100vw;
+    min-height: 100vh;
+
     margin: 0;
     font-family: 'Oswald', Arial, Helvetica, sans-serif;
     color: @primary;
+    
     display: flex;
     flex-direction: column;
     background-color: @background-primary;
 
     transition: all .5s ease;
+    overflow-x: hidden;
     
     & h1:first-child {
         margin-top: 0;
     }
 
     .content-container {
-        padding-top: 97px;
+        height: calc(~"100vh - 2em - 89px");
+        padding-top: 20px;
 
         &:first-child {
             width: 100%;

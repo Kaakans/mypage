@@ -6,6 +6,7 @@ import Reviews from './reviews';
 import Footer from './footer';
 import Snake from './snake';
 import Dev from './dev-blogg';
+import Banner from './banner';
 import { View } from './enums/view';
 
 export interface IComponentState {
@@ -58,6 +59,7 @@ export default class App extends Component<any, IComponentState> {
 
     render() {
         return <div>
+            <Banner />
             <Header renderCallback={this.renderCallback} />
             {this.renderContent()}
             <Footer />
